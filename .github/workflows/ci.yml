@@ -20,24 +20,14 @@ jobs:
         with:
           node-version: 22
 
-      # 4 个被测仓作为 sibling checkout（起服约定见 docs/conventions/e2e-runtime.md）
+      # 4 个被测仓作为 sibling checkout（起服约定见 docs/conventions/e2e-runtime.md）。
+      # 不用 actions/checkout：v4 拒绝 workspace 外路径（v0.1.0 run #34756944347 的
+      # 失败根因），git clone 到 ../ 与本机 dev 布局逐字一致，下游 ../ 引用零改动。
       - name: Checkout siblings (msw/react/vue/nextjs)
-        uses: actions/checkout@v4
-        with:
-          repository: zcqiand/lab-management-system-msw
-          path: ../lab-management-system-msw
-      - uses: actions/checkout@v4
-        with:
-          repository: zcqiand/lab-management-system-react
-          path: ../lab-management-system-react
-      - uses: actions/checkout@v4
-        with:
-          repository: zcqiand/lab-management-system-vue
-          path: ../lab-management-system-vue
-      - uses: actions/checkout@v4
-        with:
-          repository: zcqiand/lab-management-system-nextjs
-          path: ../lab-management-system-nextjs
+        run: |
+          for repo in msw react vue nextjs; do
+            git clone --depth 1 "https://github.com/zcqiand/lab-management-system-$repo.git" "../lab-management-system-$repo"
+          done
 
       - name: Install all
         run: |
