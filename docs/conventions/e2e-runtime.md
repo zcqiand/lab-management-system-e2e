@@ -17,17 +17,17 @@ mock-friendly 语义（不起服时门禁照常可跑，E2E 用例仅在显式�
 
 | 序 | 仓 | 端口 | 命令（仓根） | 前置 |
 |---|---|---|---|---|
-| 1 | lab-management-system-msw | 5200 | `npm run dev`（须带 JWT_* env，见下） | 无（内存 fixture，无 DB） |
+| 1 | lab-management-system-msw | 5200 | `npm run dev`（dotenv 已接线，裸起即可） | 无（内存 fixture，无 DB） |
 | 2 | lab-management-system-nextjs | 5201 | `npm run dev` | msw 在跑 |
 | 3 | lab-management-system-react | 5202 | `npm run dev` | msw 在跑 |
 | 4 | lab-management-system-vue | 5203 | `npm run dev` | msw 在跑 |
 
 健康检查：msw `GET :5200/healthz` 返回 `mode:'msw'`。
 
-msw 不自行加载 .env（无 dotenv 接线），dev 起服必须显式带 JWT 四件套
-（值取 msw 仓 `.env.example`：`JWT_SIGNING_KEY` / `JWT_ISSUER` / `JWT_AUDIENCE` /
-`JWT_TTL_SECONDS`）——裸 `npm run dev` 会在首次登录时才炸（fail-fast 在签发点）。
-CI 已在 envs 里注入（ci.yml）。
+msw 已接线 dotenv/config（2026-09-13）：`npm run dev` 自动加载仓根 `.env`
+（gitignored，dev 真值从 `.env.example` 复制；JWT 四件套 + LAB_CORS_ALLOWED_ORIGINS，
+缺 CORS key 起服即 fail-fast 退出而非首次登录才炸）。CI 的 `cp .env.example .env`
+由死代码变真生效；此前唯一一次 run（v0.1.0）失败的 msw 侧根因即此。
 
 ## 3. 前端 API base：用环境变量覆盖指向 msw
 
