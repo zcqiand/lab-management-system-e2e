@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "project": "lab-management-system-e2e",
+  "functions": {
+    "modules": 2,
+    "features": 5,
+    "items": 13
+  },
+  "warnings_total": 3,
+  "warnings": {
+    "已上线但不在任何流程且非孤儿白名单": [
+      "M95.F02.I04",
+      "M95.F02.I05",
+      "M95.F02.I06"
+    ]
+  },
+  "unreachable_shipped": [],
+  "function_map": {
+    "M01.F01.I01": {
+      "name": "（init_project 占位）",
+      "status": "已废弃",
+      "type": null,
+      "requirements": [],
+      "flows": [],
+      "designs": [],
+      "tests": [],
+      "entry": []
+    },
+    "M95.F01.I01": {
+      "name": "Playwright 三端 project 配置",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [
+        "docs\\requirements\\REQ-2026-100-e2e-infra.md"
+      ],
+      "flows": [],
+      "designs": [
+        "docs\\design\\design-function-map.md"
+      ],
+      "tests": [
+        "tests/env-contract.spec.ts::config 声明恰好三个 project：nextjs/react/vue（顺序固定）M95.F01.I01",
+        "tests/env-contract.spec.ts::三端 baseURL env 全部就绪且互不相同 M95.F01.I01"
+      ],
+      "entry": []
+    },
+    "M95.F01.I02": {
+      "name": "仓内基建契约自检",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [
+        "docs\\requirements\\REQ-2026-100-e2e-infra.md"
+      ],
+      "flows": [],
+      "designs": [
+        "docs\\design\\design-function-map.md"
+      ],
+      "tests": [
+        "tests/infra-contract.spec.ts::AC-1 .env.example 与 .env.test key 集合全等 M95.F01.I02",
+        "tests/infra-contract.spec.ts::AC-2 playwright 三项目固定顺序 nextjs→react→vue M95.F01.I02",
+        "tests/infra-contract.spec.ts::AC-3 运行时约定登记了后端目标与 lab 端口段 M95.F01.I02 覆盖 M95.F04.I01",
+        "tests/infra-contract.spec.ts::AC-4 trace_reporter 声明归档 .state/trace.json（schema 1）M95.F01.I02 覆盖 M95.F03.I01"
+      ],
+      "entry": []
+    },
+    "M95.F02.I01": {
+      "name": "SSO 登录主流程用例",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [],
+      "flows": [
+        "docs\\design\\flow-function-map.md"
+      ],
+      "designs": [
+        "docs\\design\\design-function-map.md"
+      ],
+      "tests": [
+        "tests/login.spec.ts::AC-1 未登录访问 /login 自动发起 SSO：authorize 参数完整且浏览器真实跳转 M95.F02.I01 覆盖 M01.F05.I01",
+        "tests/login.spec.ts::AC-2 回跳 state 校验失败：不发 callback、停留 /login 显示错误 M95.F02.I01 覆盖 M01.F05.I01",
+        "tests/login.spec.ts::AC-3 回跳 state 匹配：callback 换 token、lab JWT 落 localStorage 并离开登录页 M95.F02.I01 覆盖 M01.F05.I01"
+      ],
+      "entry": []
+    },
+    "M95.F02.I02": {
+      "name": "合同管理 CRUD 用例",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [
+        "docs\\requirements\\REQ-2026-101-contract-crud.md"
+      ],
+      "flows": [],
+      "designs": [
+        "docs\\design\\design-function-map.md"
+      ],
+      "tests": [
+        "tests/contract-crud.spec.ts::AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01",
+        "tests/contract-crud.spec.ts::AC-2 创建合同：行出现 M95.F02.I02 覆盖 M02.F01.I02",
+        "tests/contract-crud.spec.ts::AC-3 编辑合同：项目名称变更落行 M95.F02.I02 覆盖 M02.F01.I02",
+        "tests/contract-crud.spec.ts::AC-4 删除合同：确认后行消失 M95.F02.I02 覆盖 M02.F01.I03"
+      ],
+      "entry": []
+    },
+    "M95.F02.I03": {
+      "name": "会话用例（预置+登出）",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [
+        "docs\\requirements\\REQ-2026-102-session.md"
+      ],
+      "flows": [],
+      "designs": [
+        "docs\\design\\design-function-map.md"
+      ],
+      "tests": [
+        "tests/session.spec.ts::AC-1 会话预置后业务页可达：合同列表渲染 seed 行 M95.F02.I03 覆盖 M00.F01.I01",
+        "tests/session.spec.ts::AC-2 登出：会话清理落回登录页 M95.F02.I03 覆盖 M01.F05.I04"
+      ],
+      "entry": []
+    },
+    "M95.F02.I04": {
+      "name": "委托书 CRUD 用例",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [
+        "docs\\requirements\\REQ-2026-103-receipt-crud.md"
+      ],
+      "flows": [],
+      "designs": [
+        "docs\\design\\design-function-map.md"
+      ],
+      "tests": [
+        "tests/receipt-crud.spec.ts::AC-1 委托书列表渲染 seed 行 M95.F02.I04 覆盖 M03.F01.I01",
+        "tests/receipt-crud.spec.ts::AC-2 创建委托书：行出现 M95.F02.I04 覆盖 M03.F01.I02",
+        "tests/receipt-crud.spec.ts::AC-3 编辑委托书：委托书编号变更落行 M95.F02.I04 覆盖 M03.F01.I03",
+        "tests/receipt-crud.spec.ts::AC-4 删除委托书：确认后行消失 M95.F02.I04 覆盖 M03.F01.I03"
+      ],
+      "entry": []
+    },
+    "M95.F02.I05": {
+      "name": "字典 CRUD 用例",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [
+        "docs\\requirements\\REQ-2026-104-dict-crud.md"
+      ],
+      "flows": [],
+      "designs": [
+        "docs\\design\\design-function-map.md"
+      ],
+      "tests": [
+        "tests/dict-crud.spec.ts::AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01",
+        "tests/dict-crud.spec.ts::AC-2 新建品牌：行出现 M95.F02.I05 覆盖 M04.F09.I02",
+        "tests/dict-crud.spec.ts::AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I03"
+      ],
+      "entry": []
+    },
+    "M95.F02.I06": {
+      "name": "技术要求 CRUD 用例",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [
+        "docs\\requirements\\REQ-2026-105-techreq-crud.md"
+      ],
+      "flows": [],
+      "designs": [
+        "docs\\design\\design-function-map.md"
+      ],
+      "tests": [
+        "tests/techreq-crud.spec.ts::AC-1 技术要求列表渲染 seed 行 M95.F02.I06 覆盖 M06.F06.I01",
+        "tests/techreq-crud.spec.ts::AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02",
+        "tests/techreq-crud.spec.ts::AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03"
+      ],
+      "entry": []
+    },
+    "M95.F02.I07": {
+      "name": "冒烟遍历用例",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [],
+      "flows": [],
+      "designs": [
+        "docs\\design\\design-function-map.md"
+      ],
+      "tests": [
+        "tests/smoke-nav.spec.ts::AC-1 全部公共路由可达：无崩溃、无 API 5xx M95.F02.I07",
+        "tests/smoke-nav.spec.ts::AC-2 关键列表页有数据行（防死桩假绿）M95.F02.I07"
+      ],
+      "entry": []
+    },
+    "M95.F02.I08": {
+      "name": "三端 UI 结构指纹用例",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [],
+      "flows": [],
+      "designs": [
+        "docs\\design\\design-function-map.md"
+      ],
+      "tests": [
+        "tests/ui-parity.spec.ts::AC-1 合同表头三端全等 M95.F02.I08 覆盖 M02.F01.I01",
+        "tests/ui-parity.spec.ts::AC-2 合同行操作含编辑/删除 M95.F02.I08 覆盖 M02.F01.I03",
+        "tests/ui-parity.spec.ts::AC-3 品牌字典与技术要求容器锚三端同构 M95.F02.I08 覆盖 M04.F09.I01 + M06.F06.I01"
+      ],
+      "entry": []
+    },
+    "M95.F03.I01": {
+      "name": "Playwright→trace.json 映射器",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [
+        "docs\\requirements\\REQ-2026-100-e2e-infra.md"
+      ],
+      "flows": [],
+      "designs": [
+        "docs\\design\\design-function-map.md"
+      ],
+      "tests": [
+        "tests/infra-contract.spec.ts::AC-4 trace_reporter 声明归档 .state/trace.json（schema 1）M95.F01.I02 覆盖 M95.F03.I01"
+      ],
+      "entry": []
+    },
+    "M95.F04.I01": {
+      "name": "lab-msw 默认目标接线",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [
+        "docs\\requirements\\REQ-2026-100-e2e-infra.md"
+      ],
+      "flows": [],
+      "designs": [
+        "docs\\design\\design-function-map.md"
+      ],
+      "tests": [
+        "tests/infra-contract.spec.ts::AC-3 运行时约定登记了后端目标与 lab 端口段 M95.F01.I02 覆盖 M95.F04.I01"
+      ],
+      "entry": []
+    }
+  }
+}

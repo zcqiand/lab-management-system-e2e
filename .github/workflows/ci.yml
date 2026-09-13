@@ -1,0 +1,99 @@
+# E2E 三端一致性 — tag / nightly 触发（ADR-0030 Decision 7：不进每 commit）
+# 编排 mirror saas-e2e ci.yml：sibling checkout 4 被测仓 → 起 dev server → healthcheck → playwright。
+# 凭据走 secret：E2E_TEST_PASSWORD（lab 家族 DEMO_PASSWORD，公开值，仍走 secret 便于轮换）。
+name: e2e
+on:
+  push:
+    tags: ["v*"]
+  schedule:
+    - cron: "41 16 * * *" # 每日 00:41 +0800（off-minute，避开整点洪峰 + 错开 saas e2e）
+  workflow_dispatch:
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # 4 个被测仓作为 sibling checkout（起服约定见 docs/conventions/e2e-runtime.md）
+      - name: Checkout siblings (msw/react/vue/nextjs)
+        uses: actions/checkout@v4
+        with:
+          repository: zcqiand/lab-management-system-msw
+          path: ../lab-management-system-msw
+      - uses: actions/checkout@v4
+        with:
+          repository: zcqiand/lab-management-system-react
+          path: ../lab-management-system-react
+      - uses: actions/checkout@v4
+        with:
+          repository: zcqiand/lab-management-system-vue
+          path: ../lab-management-system-vue
+      - uses: actions/checkout@v4
+        with:
+          repository: zcqiand/lab-management-system-nextjs
+          path: ../lab-management-system-nextjs
+
+      - name: Install all
+        run: |
+          npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+          for repo in msw react vue nextjs; do
+            (cd ../lab-management-system-$repo && (npm ci --no-audit --no-fund || npm install --no-audit --no-fund))
+          done
+
+      - name: Install chromium
+        run: npx playwright install --with-deps chromium
+
+      # CI 无 .env.local（gitignored）——按各仓 .env.example 契约生成，API base 全指 msw :5200
+      - name: Write env files
+        run: |
+          # msw：server.ts 用 dotenv/config 读 .env（JWT_* fail-fast，缺了 login 即炸）
+          cp ../lab-management-system-msw/.env.example ../lab-management-system-msw/.env
+          for repo in react vue; do
+            printf 'VITE_API_BASE_URL=http://localhost:5200\n' \
+              > ../lab-management-system-$repo/.env.local
+          done
+          printf 'NEXT_PUBLIC_API_BASE_URL=http://localhost:5200\n' \
+            > ../lab-management-system-nextjs/.env.local
+          cp .env.test .env.local
+          echo "E2E_TEST_PASSWORD=${{ secrets.E2E_TEST_PASSWORD }}" >> .env.local
+
+      - name: Start 4 servers
+        run: |
+          mkdir -p .runtime-logs
+          PIDS=()
+          (cd ../lab-management-system-msw && nohup npm run dev > "$OLDPWD/.runtime-logs/msw.log" 2>&1) & PIDS+=($!)
+          (cd ../lab-management-system-nextjs && nohup npm run dev > "$OLDPWD/.runtime-logs/nextjs.log" 2>&1) & PIDS+=($!)
+          (cd ../lab-management-system-react && nohup npm run dev > "$OLDPWD/.runtime-logs/react.log" 2>&1) & PIDS+=($!)
+          (cd ../lab-management-system-vue && nohup npm run dev > "$OLDPWD/.runtime-logs/vue.log" 2>&1) & PIDS+=($!)
+
+          healthcheck() {
+            for i in $(seq 1 90); do
+              code=$(curl -s -o /dev/null -w "%{http_code}" "$2" || true)
+              [ "$code" = "200" ] && echo "$1 up" && return 0
+              sleep 2
+            done
+            echo "$1 FAILED"; tail -40 .runtime-logs/*.log; return 1
+          }
+          healthcheck msw    http://localhost:5200/healthz
+          healthcheck nextjs http://localhost:5201/login
+          healthcheck react  http://localhost:5202/login
+          healthcheck vue    http://localhost:5203/login
+
+      - name: Run e2e
+        run: npm run e2e
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-results
+          path: |
+            test-results/
+            .state/trace.json
+          retention-days: 7

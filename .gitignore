@@ -1,0 +1,18 @@
+.state/trace.json
+.state/gate.json
+
+# Node / Playwright
+node_modules/
+test-results/
+playwright-report/
+.blob-store/
+
+# Claude 临时文件
+.claude/
+.superpowers/
+.mcp.json
+
+# env 真值（gitignored，同家族前端仓）
+.env.local
+.env
+.env.*.local

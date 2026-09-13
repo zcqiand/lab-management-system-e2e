@@ -1,0 +1,14 @@
+{
+  "name": "@lab/management-system-e2e",
+  "version": "0.1.0",
+  "description": "建筑工程实验室管理系统 — 前端 E2E parity suite。一套 Playwright spec 参数化跑 react/vue/nextjs baseURL（ADR-0030，lab 家族落地 ADR-0033 阶段三）。",
+  "private": true,
+  "scripts": {
+    "e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^22.20.2",
+    "typescript": "^7.0.2"
+  }
+}
