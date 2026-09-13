@@ -1,13 +1,27 @@
 {
   "schema": 1,
   "project": "lab-management-system-e2e",
-  "current_task": "项目已初始化，等待第一个需求",
-  "done": ["脚手架生成，门禁全绿"],
-  "next": "跑 /req <需求原话> 落第一份需求文档，同时把 docs/functions/function-tree.md 填成真实功能清单",
+  "current_task": "ADR-0033 阶段三收工归档（建仓 + 三端联跑全绿）",
+  "done": [
+    "建仓 commit dc95de2：17 spec × nextjs/react/vue 三 project，L0-L5 exit 0（L4 = 89 passed，wall ~4min < 900s）",
+    "会话三机制坑根治：seed init 脚本 once-flag 播种闸 + 双 page abort SSO authorize（e2e-runtime.md §3.6）",
+    "REF 形状缝桥接（installRefShapeAdapters，msw 契约形状不动）+ route.fetch 被 abort dispose 的 fallback 兜底",
+    "techreq 复合键跨用例碰撞：nextjs 预填标准一律覆盖唯一 std（同键重复行 + DELETE 只删首条）",
+    "nextjs dev 冷编译：globalSetup 暖机全量页面 + 高频 API；异步树禁裸 count()（helpers waitFor）",
+    "L5 收口：REQ 文档去跨仓 BASE ID 字面量（saas-e2e 先例）+ M01.F01.I01 重复行按维护约定归已废弃段",
+    "suite 5c528b3：e2e gitlink 注册（Form B）+ msw/nextjs 指针 bump"
+  ],
+  "next": [
+    "GitHub 推送（本机无 gh CLI，远端仓待建：zcqiand/lab-management-system-e2e）",
+    "铺开剩余业务域用例（如需）：样品/报告/检测记录等 REF 页与 smoke ROUTES 增量",
+    "live 模式未建（e2e-runtime.md §5 登记）：对 5204/5205 真后端另按 ADR-0016 模式接入"
+  ],
   "open_questions": [],
   "dont": [
     "不要改 .harness/stack.json 让门变松",
-    "不要给 skip 的测试挂功能 ID"
+    "不要给 skip 的测试挂功能 ID",
+    "不要改 scripts/gate.py 的 GATE_TIMEOUT_S=900（suite 保留，改了=放宽门禁）",
+    "异步渲染树禁裸 count()；新增 nextjs 路由记得加进 globalSetup 暖机清单"
   ],
-  "last_gate_passed_at": null
+  "last_gate_passed_at": "2026-09-13"
 }
