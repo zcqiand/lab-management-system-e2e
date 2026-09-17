@@ -1,21 +1,13 @@
-// 跑测结束后把 msw fixtures 还原到启动快照：
-// e2e 自产自销的行（如 e2e-xxx 接样单）即使断言失败/重试泄漏，也不会残留在
-// 开发者的 msw 内存里污染手动浏览。与 globalSetup 的 reset 成对。
-//
-// 用 node:http 而非 fetch（undici）：Windows 下 undici 的 keep-alive 句柄
-// 会在进程退出时触发 libuv 断言崩溃（exit 127），污染 playwright 退出码。
-import http from "node:http";
+// 跑测结束后把种子行还原（shared seed-db upsert 重灌）：写路径用例翻转过的
+// seed 行（如 flowStatus）、断言失败/重试泄漏的行，不会残留污染开发者手动
+// 浏览被测库。与 globalSetup 的 reseed 成对（2026-09-17 起 reset 语义从 msw
+// 内存快照改为 DB upsert；自产行靠唯一 code，不依赖删除式清理）。
+import { reseed } from "./global-setup";
 
 export default async function globalTeardown(): Promise<void> {
-  await new Promise<void>((resolve) => {
-    const req = http.request(
-      { host: "localhost", port: 5200, path: "/api/v1/__e2e/reset", method: "POST" },
-      (res) => {
-        res.resume();
-        res.on("end", resolve);
-      },
-    );
-    req.on("error", () => resolve()); // msw 没起：setup 已报过更明确的错
-    req.end();
-  });
+  try {
+    reseed();
+  } catch {
+    // setup 已报过更明确的错；teardown 失败不污染 playwright 退出码
+  }
 }

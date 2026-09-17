@@ -17,8 +17,8 @@
   改功能与改功能清单必须同一个 commit；废弃只改状态，编号永不复用；禁止给 skip 的测试挂功能 ID
 - **用例禁止分叉**：同一份 spec × 三 project（react/vue/nextjs）；spec 内出现 per-端 分支 = parity 失效
 - **选择器只锚 `data-fn` 与用户可观察行为**（loading/empty/error/禁用/提示）；禁止锚 DOM 结构、组件库、CSS
-- msw 是**独立 HTTP mock server**（传统 Mock Server 模式，真 TCP :5200，CORS/cookie 真语义）；
-  本仓零 npm 依赖它，起服约定见 `docs/conventions/e2e-runtime.md`（外部起服，不自起）
+- API 后端 = **真 lab-nextjs :5201**（2026-09-17 msw 仓已删，剔除设计 Phase 4 提前）；
+  起服约定见 `docs/conventions/e2e-runtime.md`（外部起服，不自起；需 PG 库 migrate+seed）
 
 ## 3. 技术栈与版本（钉死于 version-lock.json）
 

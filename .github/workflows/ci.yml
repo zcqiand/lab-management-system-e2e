@@ -1,5 +1,7 @@
 # E2E 三端一致性 — tag / nightly 触发（ADR-0030 Decision 7：不进每 commit）
-# 编排 mirror saas-e2e ci.yml：sibling checkout 4 被测仓 → 起 dev server → healthcheck → playwright。
+# 编排 mirror saas-e2e ci.yml：sibling checkout 被测仓 → 起 dev server → healthcheck → playwright。
+# 2026-09-17 msw 仓已删（剔除设计 Phase 4 提前）：API 后端切真 lab-nextjs :5201（DB 参照实现），
+# CI 加 postgres service + shared migrate/seed 灌 lab_e2e scratch 库。
 # 凭据走 secret：E2E_TEST_PASSWORD（lab 家族 DEMO_PASSWORD，公开值，仍走 secret 便于轮换）。
 name: e2e
 on:
@@ -13,6 +15,23 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: lab_e2e
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      # 被测 lab-nextjs 实际连的库（globalSetup 种子 upsert 同库）
+      E2E_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/lab_e2e
     steps:
       - uses: actions/checkout@v4
 
@@ -20,44 +39,55 @@ jobs:
         with:
           node-version: 22
 
-      # 4 个被测仓作为 sibling checkout（起服约定见 docs/conventions/e2e-runtime.md）。
+      # 被测仓 + shared（种子/迁移权威源）作为 sibling checkout（起服约定见 docs/conventions/e2e-runtime.md）。
       # 不用 actions/checkout：v4 拒绝 workspace 外路径（v0.1.0 run #34756944347 的
       # 失败根因），git clone 到 ../ 与本机 dev 布局逐字一致，下游 ../ 引用零改动。
-      - name: Checkout siblings (msw/react/vue/nextjs)
+      - name: Checkout siblings (shared/nextjs/react/vue)
         run: |
-          for repo in msw react vue nextjs; do
+          for repo in shared nextjs react vue; do
             git clone --depth 1 "https://github.com/zcqiand/lab-management-system-$repo.git" "../lab-management-system-$repo"
           done
 
       - name: Install all
         run: |
           npm ci --no-audit --no-fund || npm install --no-audit --no-fund
-          for repo in msw react vue nextjs; do
+          for repo in shared nextjs react vue; do
             (cd ../lab-management-system-$repo && (npm ci --no-audit --no-fund || npm install --no-audit --no-fund))
           done
 
       - name: Install chromium
         run: npx playwright install --with-deps chromium
 
-      # CI 无 .env.local（gitignored）——按各仓 .env.example 契约生成，API base 全指 msw :5200
+      # CI 无 .env.local（gitignored）——按各仓 .env.example 契约生成，API base 全指真 lab-nextjs :5201
       - name: Write env files
         run: |
-          # msw：server.ts 用 dotenv/config 读 .env（JWT_* fail-fast，缺了 login 即炸）
-          cp ../lab-management-system-msw/.env.example ../lab-management-system-msw/.env
+          # lab-nextjs：ADR-0019 fail-fast key 全套来自 .env.example（SSO 指向不存在的
+          # :5101 → serviceLogin warn + 空菜单快照，登录主流程不受影响）；DB 换 scratch 库、
+          # API base 同源。用 sed 锚定整行改值——append 同 key 行在 dotenv 里是 last-wins
+          # 赌博，不赌（deploy-script-append_if_missing 教训的同族坑）。
+          cp ../lab-management-system-nextjs/.env.example ../lab-management-system-nextjs/.env.local
+          sed -i 's|^DATABASE_URL=.*|DATABASE_URL=postgresql://postgres:postgres@localhost:5432/lab_e2e|' \
+            ../lab-management-system-nextjs/.env.local
+          sed -i 's|^NEXT_PUBLIC_API_BASE_URL=.*|NEXT_PUBLIC_API_BASE_URL=|' \
+            ../lab-management-system-nextjs/.env.local
           for repo in react vue; do
-            printf 'VITE_API_BASE_URL=http://localhost:5200\n' \
+            printf 'VITE_API_BASE_URL=http://localhost:5201\n' \
               > ../lab-management-system-$repo/.env.local
           done
-          printf 'NEXT_PUBLIC_API_BASE_URL=http://localhost:5200\n' \
-            > ../lab-management-system-nextjs/.env.local
           cp .env.test .env.local
           echo "E2E_TEST_PASSWORD=${{ secrets.E2E_TEST_PASSWORD }}" >> .env.local
 
-      - name: Start 4 servers
+      # scratch 库建表 + 灌种（shared 权威源；globalSetup 跑前还会 upsert 一次还原）
+      - name: Migrate + seed scratch DB
+        run: |
+          (cd ../lab-management-system-shared && \
+            DATABASE_URL="$E2E_DATABASE_URL" node scripts/migrate-db.mjs && \
+            DATABASE_URL="$E2E_DATABASE_URL" node scripts/seed-db.mjs)
+
+      - name: Start 3 servers
         run: |
           mkdir -p .runtime-logs
           PIDS=()
-          (cd ../lab-management-system-msw && nohup npm run dev > "$OLDPWD/.runtime-logs/msw.log" 2>&1) & PIDS+=($!)
           (cd ../lab-management-system-nextjs && nohup npm run dev > "$OLDPWD/.runtime-logs/nextjs.log" 2>&1) & PIDS+=($!)
           (cd ../lab-management-system-react && nohup npm run dev > "$OLDPWD/.runtime-logs/react.log" 2>&1) & PIDS+=($!)
           (cd ../lab-management-system-vue && nohup npm run dev > "$OLDPWD/.runtime-logs/vue.log" 2>&1) & PIDS+=($!)
@@ -70,8 +100,7 @@ jobs:
             done
             echo "$1 FAILED"; tail -40 .runtime-logs/*.log; return 1
           }
-          healthcheck msw    http://localhost:5200/healthz
-          healthcheck nextjs http://localhost:5201/login
+          healthcheck nextjs http://localhost:5201/api/health
           healthcheck react  http://localhost:5202/login
           healthcheck vue    http://localhost:5203/login
 

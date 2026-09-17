@@ -3,7 +3,7 @@
 //   - react/vue：平铺 <Table>（tbody tr），radix Select 表单（含「未选择」哨兵）；
 //   - nextjs：TwoLevelObjectStandardTree 二级树（检测项目→检测标准，aside 按钮）+
 //     ul[data-testid] li 拖拽行，ConfirmModal 原生 select 表单，删除走原生 confirm。
-// 行数据形状差异由 installTechReqShapeAdapter 在测试缝桥接（msw 保持契约裸数组）。
+// 行数据形状差异由 installTechReqShapeAdapter 在测试缝桥接（后端保持契约裸数组）。
 // spec 不分叉：superset 行定位 + 「字段存在才填」同一代码路径三分端。
 import { test, expect, type Page } from "@playwright/test";
 import {
@@ -62,14 +62,14 @@ async function createRow(page: Page, brand: string): Promise<void> {
   // 复合主键两维（radix：react/vue；原生 select：nextjs）
   await pickFirstSelectOption(page, dialog, "检测项目");
   await pickFirstSelectOption(page, dialog, "检测参数");
-  // 判定标准（复合主键第三维，值必须唯一）：三端共享一个 msw（有状态），
+  // 判定标准（复合主键第三维，值必须唯一）：三端共享一个有状态真后端，
   // 固定字面量或空串会让三个 project 建/删同一条 (obj,param,std) 行——跨 project
-  // 互删、count 断言污染；空串还会让 DELETE URL 尾段为空不命中 msw 路由
+  // 互删、count 断言污染；空串还会让 DELETE URL 尾段为空不命中后端路由
   // （2026-09-13 probe3 vue AC-3 实证）。
   // nextjs 会预填当前树选中标准——**一律覆盖成唯一值**：预填值跨用例不变，
-  // AC-2/AC-3 会建出同复合键的重复行，msw push 不去重，按复合键 DELETE 只删
+  // AC-2/AC-3 会建出同复合键的重复行，后端 insert 不去重，按复合键 DELETE 只删
   // 首条、自己的行残留（probe14 nextjs AC-3 实证）。「列表按 std 过滤所以必须
-  // 保留预填」的前提在本仓测试缝上不成立：msw GET 忽略 judgmentStandardCode
+  // 保留预填」的前提在本仓测试缝上不成立：后端 GET 忽略 judgmentStandardCode
   // 过滤、adapter 原样包装，唯一 std 的新行照常可见。
   // 定位 superset：react Label htmlFor / nextjs aria-label → getByLabel；
   // vue Label 无 for 关联 → 「label 兄弟 input」兜底。
@@ -98,7 +98,7 @@ test("AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M
   await revealRows(page);
   const brand = uniqueCode("e2e-br");
   await createRow(page, brand);
-  // 唯一 brand 定位新行（三端共享 msw 并行跑，计数断言会被其他 project 的写入污染）
+  // 唯一 brand 定位新行（三端共享真后端串行跑，计数断言会被其他 project 的写入污染）
   await expect(page.locator(ROWS).filter({ hasText: brand }).first()).toBeVisible({
     timeout: 15_000,
   });

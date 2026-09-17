@@ -34,7 +34,7 @@ test("AC-2 playwright 三项目固定顺序 nextjs→react→vue M95.F01.I02", a
 test("AC-3 运行时约定登记了后端目标与 lab 端口段 M95.F01.I02 覆盖 M95.F04.I01", () => {
   const doc = readFileSync(join(ROOT, "docs/conventions/e2e-runtime.md"), "utf-8");
   expect(doc).toContain("M95.F04.I01"); // 后端目标条目（trace 锚点要求）
-  expect(doc).toContain("http://localhost:5200"); // lab-msw API base
+  expect(doc).toContain("http://localhost:5201/api"); // 真 lab-nextjs API base（msw 剔除后）
   for (const port of ["5201", "5202", "5203"]) {
     expect(doc, `起服清单应含端口 ${port}`).toContain(port);
   }

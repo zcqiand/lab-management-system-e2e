@@ -1,5 +1,5 @@
 // M95.F02.I07 冒烟导航：会话预置后逐路由直航（page.goto，不走侧边栏——
-// msw 下 /auth/menus 返回 200 []（已核实），三端侧边栏为空，点导航不可行，已登记分歧）。
+// saas 不可达时后端 /auth/menus 返回 200 []（空快照，已核实），三端侧边栏为空，点导航不可行，已登记分歧）。
 // 每路由断言：无页面级 JS 崩溃（pageerror）、无 /api/** 5xx。
 // 路由清单取三端并集的「公共子集」：/inspection-calculation-rules（vue 缺，登记分歧）、
 // /dashboard（react/vue 缺）、各端首页语义分歧（react/vue / vs nextjs /dashboard）均不入清单。

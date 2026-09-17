@@ -30,14 +30,15 @@ export function fnRows(page: Page, fn: string): Locator {
   );
 }
 
-/** 登录响应（msw /auth/login 返回形态的子集）。 */
+/** 登录响应（真 lab-nextjs /api/auth/login 返回形态的子集）。 */
 export interface LabSession {
   token: string;
   refreshToken: string;
   currentTenantId: string;
 }
 
-/** API 登录（msw :5200 /auth/login），同时让 msw 写菜单快照占位。 */
+/** API 登录（真 lab-nextjs :5201 /api/auth/login；saas 不可达时菜单快照写空，
+ *  前端 useBackendMenus 回退静态菜单——与 msw 时期表现一致）。 */
 export async function apiLogin(request: APIRequestContext): Promise<LabSession> {
   const base = requireE2eEnv("E2E_API_BASE_URL");
   const res = await request.post(`${base}/auth/login`, {
@@ -46,7 +47,7 @@ export async function apiLogin(request: APIRequestContext): Promise<LabSession> 
       password: requireE2eEnv("E2E_TEST_PASSWORD"),
     },
   });
-  expect(res.status(), "API 登录应 200（检查 E2E_TEST_USERNAME/PASSWORD 与 lab-msw）").toBe(200);
+  expect(res.status(), "API 登录应 200（检查 E2E_TEST_USERNAME/PASSWORD 与 lab-nextjs :5201）").toBe(200);
   const body = (await res.json()) as { token: string; refreshToken: string };
   const me = await request.get(`${base}/auth/me`, {
     headers: { authorization: `Bearer ${body.token}` },
@@ -142,7 +143,7 @@ export async function pickFirstOption(
   await page.getByRole("option").first().click();
 }
 
-/** 本测试内唯一的业务 code（msw 无持久化，撞 seed/前次唯一约束只会来自并发自身）。 */
+/** 本测试内唯一的业务 code（DB 有持久化——撞 seed/前次唯一约束的风险靠唯一 code 根除）。 */
 export function uniqueCode(prefix: string): string {
   return `${prefix}-${Math.random().toString(36).slice(2, 8)}`;
 }
@@ -204,9 +205,9 @@ export async function pickFirstSelectOption(
 /**
  * REF 形状适配（镜像 react 仓 tests/helpers/seed.ts installShapeAdapters，
  * nextjs 组件头注释同款声明）：shared 契约下列 GET 端点返回裸数组，三端 REF 页面
- * 一律读 {items,total}——桥接放测试缝，msw 保持契约形状不动。
+ * 一律读 {items,total}——桥接放测试缝，后端保持契约形状不动。
  *   - /api/technical-requirements：行 id 补成「obj/param/std」斜杠复合键——页面
- *     PUT/DELETE /technical-requirements/{id} 原样命中 msw 复合主键路由，无需改 URL；
+ *     PUT/DELETE /technical-requirements/{id} 原样命中后端复合主键路由，无需改 URL；
  *   - /api/report-names：行 id 缺失补 id=code（nextjs 委托书表单报告名称下拉读 {items}）。
  */
 export async function installRefShapeAdapters(page: Page): Promise<void> {
@@ -215,7 +216,7 @@ export async function installRefShapeAdapters(page: Page): Promise<void> {
       try {
         const res = await route.fetch();
         const body = (await res.json()) as unknown;
-        // msw 有的端点回裸数组（契约形状）、有的已回 {items,total}——两态都接
+        // 后端有的端点回裸数组（契约形状）、有的已回 {items,total}——两态都接
         const raw: Array<Record<string, unknown>> = Array.isArray(body)
           ? body
           : Array.isArray((body as { items?: unknown[] })?.items)
@@ -252,8 +253,8 @@ export async function installRefShapeAdapters(page: Page): Promise<void> {
     if (route.request().method() !== "GET") return route.fallback();
     return wrap(route, (r) => ({ ...r, id: String(r.id ?? r.code ?? "") }));
   });
-  // 4 类字典表（CategoryDictList 按 id 编辑/删除，msw 契约按 code 寻址且行无 id）：
-  //   GET：包 {items,total} + 补 id=code；POST：msw 对缺 code 的 body 落 code=""
+  // 4 类字典表（CategoryDictList 按 id 编辑/删除，契约按 code 寻址且行无 id）：
+  //   GET：包 {items,total} + 补 id=code；POST：后端对缺 code 的 body 落 code=""
   //   （后续按 id 删除/拖拽排序必 404）→ 转发前补生成 code（镜像 react wrapDict 语义）。
   await page.route(/\/api\/catalog\/(brands|models|specs|grades)/, (route) => {
     const req = route.request();
@@ -301,5 +302,5 @@ export async function selectCategoryWithRows(
       // 该类别无种子数据，换下一个
     }
   }
-  throw new Error("没有任何检测项目类别有 seed 行（检查 lab-msw fixtures）");
+  throw new Error("没有任何检测项目类别有 seed 行（检查 shared seeds 是否已灌入被测库）");
 }

@@ -25,7 +25,7 @@ test("AC-2 登出：会话清理落回登录页 M95.F02.I03 覆盖 M01.F05.I04",
   // 两 page 都要拦 SSO authorize（probe3/5/6/8/11 迭代实证，三个机制叠加）：
   //   1. seed 通道已改「本 page 只播一次」（helpers seedSession）——否则主 page
   //      登出跳 /login 时 init 脚本再次种回 token，污染 context 共享 storage；
-  //   2. 登出后 /login 挂载即自动走 SSO roundtrip——msw 把 IdP 跳板全程虚拟化
+  //   2. 登出后 /login 挂载即自动走 SSO roundtrip——msw 时期 IdP 跳板被全程虚拟化
   //      （authorize 直接回 code、callback 签真 JWT），**主 page 自己**就会把
   //      新 token 写回共享 storage，fresh page 直接 authenticated；
   //   3. fresh page 的 /login 同理也会自动重登。

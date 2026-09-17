@@ -6,16 +6,31 @@
   "gates": {
     "L3": {
       "name": "类型",
-      "cmd": ["npx", "--no", "tsc", "--noEmit"],
+      "cmd": [
+        "npx",
+        "--no",
+        "tsc",
+        "--noEmit"
+      ],
       "fix": "补全类型"
     },
     "L4": {
       "name": "E2E 三端一致性",
-      "cmd": ["npx", "--no", "playwright", "test"],
-      "fix": "先让用例变绿。需 4 个被测进程在跑（msw:5200 + nextjs:5201 + react:5202 + vue:5203），起服约定见 docs/conventions/e2e-runtime.md；没起服连接被拒是环境错误不是用例失败"
+      "cmd": [
+        "npx",
+        "--no",
+        "playwright",
+        "test"
+      ],
+      "fix": "先让用例变绿。需 3 个被测进程在跑（nextjs:5201 真 API 后端 + react:5202 + vue:5203，外加 shared migrate+seed 灌好的 PG 库），起服约定见 docs/conventions/e2e-runtime.md；没起服连接被拒是环境错误不是用例失败"
     }
   },
-  "trace_cmd": ["npx", "--no", "playwright", "test"],
+  "trace_cmd": [
+    "npx",
+    "--no",
+    "playwright",
+    "test"
+  ],
   "trace_env": {},
   "source_dirs": [
     "src"

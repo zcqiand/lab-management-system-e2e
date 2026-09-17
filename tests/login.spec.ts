@@ -13,7 +13,7 @@ import { uniqueCode } from "./helpers";
 const SAAS_AUTHORIZE = "http://saas-e2e-virtual.test/authorize";
 
 test.beforeEach(async ({ page }) => {
-  // 阶段 2 的 authorize：msw 返 authorizeUrl → 前端 window.location 跳过去。
+  // 阶段 2 的 authorize：后端返 authorizeUrl → 前端 window.location 跳过去。
   // 虚拟 RP 同款手法（saas oauth-jump AC-1）：fulfill 让导航完成、断言最终 URL。
   await page.route("**/auth/sso/authorize**", async (route) => {
     const req = new URL(route.request().url());
@@ -31,7 +31,7 @@ test.beforeEach(async ({ page }) => {
 
 test("AC-1 未登录访问 /login 自动发起 SSO：authorize 参数完整且浏览器真实跳转 M95.F02.I01 覆盖 M01.F05.I01", async ({ page }) => {
   await page.goto("/login");
-  // 前端调 msw authorize → 拿 authorizeUrl → 真实跳转虚拟 saas 落点
+  // 前端调后端 authorize → 拿 authorizeUrl → 真实跳转 saas 落点
   await page.waitForURL(new RegExp(`^${SAAS_AUTHORIZE}`), { timeout: 20_000 });
   const finalUrl = new URL(page.url());
   // RFC 6749 §4.1.1：response_type=code、client_id 非空、state 非空（防 CSRF）、redirect_uri 裸 /login
