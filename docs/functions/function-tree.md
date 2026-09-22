@@ -102,6 +102,7 @@
 | M95.F02.I08 | 三端 UI 结构指纹用例 | 接口 | 后端 | 合同表头全等、行操作按钮、品牌/技术要求容器锚逐项断言三端一致；已登记分歧页（汇总/报表/登录页锚）不入断言 | 已上线 |
 | M95.F02.I09 | 数据录入用例 | 接口 | 后端 | 会话预置 → /data-entry（flowStatus=data_entry 列表）→ 行内「录入结果」→ 弹窗样品/参数就位 → 检测结果唯一值保存重开回读持久 + 二次保存更新落定 × 三端；保存=create/update 双语义（种子 150 条 test_records 键 sample#param）；分歧登记：三态过滤器三端零实现、人工改判无独立锚、nextjs 弹窗内样品级 CRUD 独有；覆盖 BASE M03.F03 | 已上线 |
 | M95.F02.I10 | 报告工作流用例 | 接口 | 后端 | 四阶段（/report-review·approve·issue·archive）×2 用例：种子态列表渲染 + act 提交态前移（首行 WS code 提交后离开阶段列表；F08 例外=归档终态自转移：act ok 但行留存，断言 act 接受+行留存；react/vue=勾选+批量提交 I02，nextjs=行内提交钮 I07/I05——交互分歧按 project 收敛）；FlowAction=submit/return/withdraw；act 消耗预算 12 行/轮 << 存量 30，禁计数断言；测试缝（后端修正后可删）：installCorsBridge（nextjs 无 CORS 中间件）+ lab-auth operator 预置（nextjs act 需 authStore user）；分歧登记：三态过滤器 I04 三端零实现、查看详情仅 nextjs（路由跳 /receipts/{id}）、vue 反馈走 alert、nextjs 阶段页带「我提交的（可撤回）」第二张表、表形态三分（react `<table>` 行带锚 / vue div[role=table] / nextjs 容器双表）、I01/I02 三端同 ID 异义（归 tree-change 批与 M03.F03 并案）；覆盖 BASE M03.F05-F08 | 已上线 |
+| M95.F02.I11 | Summary 用例 | 接口 | 后端 | /summary 结构断言 ×3 端：汇总表动态列表头+数据行在位（I01 容器锚三端同名异义已登记；表 DOM 三分——vue div[role=table] 无真 table，union superset 治）；统计面 superset（react/vue=I02 统计卡「合同数/接样数/样品数」，nextjs=I02 容器+I03 指标卡+I04 漏斗 testid）；禁数字 parity——nextjs /api/summary 读 msw fixtures 不读 DB（登记后端批）；测试缝：installCorsBridge（同 I09/I10，后端补 CORS 后可删）；覆盖 BASE M05.F01 现状面 | 已上线 |
 
 ### M95.F03 trace 映射
 
