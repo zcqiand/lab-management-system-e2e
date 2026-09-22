@@ -304,3 +304,30 @@ export async function selectCategoryWithRows(
   }
   throw new Error("没有任何检测项目类别有 seed 行（检查 shared seeds 是否已灌入被测库）");
 }
+
+/** live 冒烟用：API 登录显式给定的 lab 后端（base 如 E2E_LIVE_API_BASE_URL）。
+ *  三后端 /auth/login 与 /auth/me 完全同构（contract-test ADR-0016 同款鉴权；
+ *  与 apiLogin 的差异仅在 base 参数化——既有导出零改动，有意复制）。 */
+export async function apiLoginAt(request: APIRequestContext, base: string): Promise<LabSession> {
+  const res = await request.post(`${base}/auth/login`, {
+    data: {
+      username: requireE2eEnv("E2E_TEST_USERNAME"),
+      password: requireE2eEnv("E2E_TEST_PASSWORD"),
+    },
+  });
+  expect(res.status(), `API 登录应 200（live 后端 ${base}；登录即探针，检查凭据/起服/CORS）`).toBe(200);
+  const body = (await res.json()) as { token: string; refreshToken: string };
+  const me = await request.get(`${base}/auth/me`, {
+    headers: { authorization: `Bearer ${body.token}` },
+  });
+  expect(me.status(), "登录后 /auth/me 应 200").toBe(200);
+  const meBody = (await me.json()) as { currentTenantId: string };
+  return { token: body.token, refreshToken: body.refreshToken, currentTenantId: meBody.currentTenantId };
+}
+
+/** 组合（live 用）：API 登录指定后端 + 会话预置。 */
+export async function loginAndSeedAt(page: Page, request: APIRequestContext, base: string): Promise<LabSession> {
+  const session = await apiLoginAt(request, base);
+  await seedSession(page, session);
+  return session;
+}

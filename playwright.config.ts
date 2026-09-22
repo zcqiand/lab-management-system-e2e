@@ -5,11 +5,14 @@
 import { defineConfig, devices } from "@playwright/test";
 import { requireE2eEnv } from "./src/env";
 
-const TARGETS = [
+const TARGETS: { name: string; urlEnv: string }[] = [
   { name: "nextjs", urlEnv: "E2E_NEXTJS_URL" },
   { name: "react", urlEnv: "E2E_REACT_URL" },
   { name: "vue", urlEnv: "E2E_VUE_URL" },
-] as const;
+];
+// live 位（M95.F04.I02）：E2E_LIVE_URL 仅 live 冒烟手动运行时由进程 env 提供；
+// 缺省/空 = 不注册 live project，默认 npm run e2e 不受影响（起服见 e2e-runtime.md §5）。
+if (process.env.E2E_LIVE_URL) TARGETS.push({ name: "live", urlEnv: "E2E_LIVE_URL" });
 
 export default defineConfig({
   testDir: "tests",
@@ -25,6 +28,9 @@ export default defineConfig({
   // ADR-0030 Decision 2：projects 顺序即 parity 报告呈现顺序，勿随意调整。
   projects: TARGETS.map((t) => ({
     name: t.name,
+    // live project 只跑 live-smoke；默认三 project 永不跑它（opt-in 双向隔离）
+    testMatch: t.name === "live" ? /live-smoke\.spec\.ts$/ : undefined,
+    testIgnore: t.name === "live" ? undefined : /live-smoke\.spec\.ts$/,
     use: { ...devices["Desktop Chrome"], baseURL: requireE2eEnv(t.urlEnv) },
   })),
 });

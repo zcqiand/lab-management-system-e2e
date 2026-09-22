@@ -79,7 +79,7 @@
 | M95.F01 | 三端参数化运行 | 同一套 Playwright 用例 × 三个 baseURL（nextjs/react/vue）跑三遍；用例分叉即 parity 失效 | 已上线 |
 | M95.F02 | 行为锚点断言 | 选择器锚 `data-fn`，断言锚用户可观察行为（行增删/loading/跳转/提示），不锚 DOM 与组件库 | 已上线 |
 | M95.F03 | trace 映射 | Playwright 结果 → 本仓 `.state/trace.json` 的 I 级 ID 映射（fnReporter onFinished 教训内置） | 已上线 |
-| M95.F04 | 后端目标 | 默认 lab-msw :5200（无 Key/无 Docker/无网全绿）；live 模式未建（登记在 e2e-runtime.md §5） | 已上线 |
+| M95.F04 | 后端目标 | 默认真后端 lab-nextjs :5201（msw 已删，9c51c84 切真）；live 冒烟=react 实例指 5204/5205（M95.F04.I02，e2e-runtime.md §5） | 已上线 |
 
 ### M95.F01 三端参数化运行
 
@@ -114,7 +114,8 @@
 
 | 子项 ID | 名称 | 类型 | 交付 | 说明 | 状态 |
 |---|---|---|---|---|---|
-| M95.F04.I01 | lab-msw 默认目标接线 | 接口 | 后端 | 三前端 dev server 的 API 指向 lab-msw :5200；全局 setup 调 /api/v1/__e2e/reset 归零 fixtures（ADR-0033 阶段三配套）；无 Key/无 Docker/无网全绿 | 已上线 |
+| M95.F04.I01 | 真后端默认目标接线 | 接口 | 后端 | 三前端 dev server 的 API 指向 lab-nextjs :5201（2026-09-17 msw 仓已删切真，勘误 2026-09-22：原文 msw :5200/__e2e/reset 已过时）；globalSetup 跑 shared seed-db upsert 重灌 + nextjs 暖机；DB=lab_dev（E2E_DATABASE_URL） | 已上线 |
+| M95.F04.I02 | live 冒烟接线 | 接口 | 后端 | E2E_LIVE_URL/E2E_LIVE_API_BASE_URL 进程 env 提供时注册 live project（默认 npm run e2e 不含，opt-in 双向 testMatch 隔离）；live-smoke（react 实例 :5206）登录→报告列表→act 一发→Summary 可达，5204/5205 各一轮；springboot CORS 白名单须显式带 :5206（静默默认 5173），aspnetcore 缺 LAB_CORS_ALLOWED_ORIGINS 即 throw；三后端共库 lab_dev，live act 消耗由 reseed 还原 | 已上线 |
 
 ---
 

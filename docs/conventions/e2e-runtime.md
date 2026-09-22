@@ -96,7 +96,27 @@ token 种回去，路由守卫永远不触发。验证「登出后访问受保�
 见 `.env.example`（fail-fast，禁兜底）。真值进 `.env.local`（gitignored）；
 登录凭据 = 家族 DEMO 用户 + DEMO_PASSWORD（lab-nextjs ConfigUserDirectory 校验），**不进断言/注释**。
 
-## 5. live 模式（未建）
+## 5. live 模式（2026-09-22 波2 接入：live 冒烟批）
 
-对真实后端（5204/5205）的 live 运行参照 contract-test ADR-0016 模式另行接入，
-不进默认运行；接入时须在本文件登记 env key 与起服差异。
+live = react 单实例（:5206）指向真后端 lab-aspnetcore :5204 / lab-springboot :5205 的浏览器级冒烟，
+只跑 `tests/live-smoke.spec.ts`（M95.F04.I02：登录 → 报告审核列表 → act 一发 → Summary 可达）。
+API 级 parity 由 contract-test（ADR-0016）兜底，live 不重复。
+
+### 5.1 env 与运行
+
+- `E2E_LIVE_URL`：指 live 后端的 react 实例地址（例 `http://localhost:5206`）
+- `E2E_LIVE_API_BASE_URL`：live 后端 API（例 `http://localhost:5204/api`）
+- 两键已进 .env.example/.env.test 契约（值留空）；真值仅进程 env 提供——空 = 不注册 live project
+- 运行：`E2E_LIVE_URL=http://localhost:5206 E2E_LIVE_API_BASE_URL=http://localhost:5204/api npx --no playwright test live-smoke --project=live`
+- 5204/5205 各跑一轮（换 env 重跑）；默认 `npm run e2e` 不含 live
+
+### 5.2 起服差异（对照 §2）
+
+1. react live 实例：`VITE_DEV_PORT=5206 VITE_API_BASE_URL=http://localhost:5204 npm run dev`（5205 轮换 base）——5206 避开 :5202 默认实例与 :5203 vue
+2. live 后端起服见 contract-test-run-live.md（各自 .env.local 含 DATABASE_URL；三后端共库 lab_dev）
+3. **CORS（两坑）**：springboot 白名单缺省静默用 `5173/5174/3000`（不报错纯拦）——起服必带
+   `LAB_CORS_ALLOWED_ORIGINS=http://localhost:5206`；aspnetcore 缺 `LAB_CORS_ALLOWED_ORIGINS`
+   直接 throw（fail-fast），配置须含 `http://localhost:5206`
+4. 探活：登录即探针（`POST /api/auth/login` fail-fast）；health 端点三端各异
+   （aspnetcore=/health、springboot=/actuator/health、nextjs=/api/health）不作为 live 前置
+5. live act 消耗 lab_dev 种子行（四阶段各 30；e2e 默认轮 globalSetup reseed 会还原翻转行）
