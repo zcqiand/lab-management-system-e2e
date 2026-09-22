@@ -20,7 +20,15 @@ test("live 冒烟：登录→报告审核列表→act 一发→Summary 可达 M9
   const text = (await row.textContent()) ?? "";
   const code = text.match(/WS-\d{4}-[A-Za-z0-9-]+/)?.[0];
   expect(code, `行文本应含委托书编号 WS-*：${text.slice(0, 80)}`).toBeDefined();
-  const table = page.locator("table", { hasText: code! }).first();
+  // 表格定位锚 I01 容器（同 report-workflow stageTable），不得 hasText:code 自过滤——
+  // 行离开后 hasText 定位归零集，not.toContainText 对「元素不存在」报 element(s) not found
+  // 而非 pass（2026-09-22 live 双轮红 + expect 语义 probe 实证），绿轮必须在场元素上断言。
+  const table = page
+    .locator(
+      `[data-fn="M03.F05.I01"] table, [data-fn="M03.F05.I01"] [role="table"], ` +
+        `table:has([data-fn="M03.F05.I01"]), [role="table"]:has([data-fn="M03.F05.I01"])`,
+    )
+    .first();
   await row.locator('input[type="checkbox"], [role="checkbox"]').first().click();
   await page.locator('[data-fn="M03.F05.I02"]').first().click();
   await expect(table).not.toContainText(code!, { timeout: 15_000 });
