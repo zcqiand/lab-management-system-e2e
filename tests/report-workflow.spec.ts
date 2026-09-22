@@ -153,7 +153,7 @@ for (const phase of PHASES) {
     await firstRowCode(page, phase); // 行可见 + code 可提取即断言成立
   });
 
-  test(`AC-${phase.f} ${phase.route} act 提交后行离开阶段列表 M95.F02.I10 覆盖 ${phase.baseActId}`, async ({ page }) => {
+  test(`AC-${phase.f} ${phase.route} act 提交${phase.f === "F08" ? "落定（终态自转移：行留存于归档列表）" : "后行离开阶段列表"} M95.F02.I10 覆盖 ${phase.baseActId}`, async ({ page }) => {
     await page.goto(phase.route);
     const { code, table } = await firstRowCode(page, phase);
     // F08 偏离登记⑤（2026-09-22 nextjs 实测 + 后端 db-queries.ts actForStageDb 注释查实）：

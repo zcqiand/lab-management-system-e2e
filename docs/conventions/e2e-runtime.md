@@ -120,3 +120,6 @@ API 级 parity 由 contract-test（ADR-0016）兜底，live 不重复。
 4. 探活：登录即探针（`POST /api/auth/login` fail-fast）；health 端点三端各异
    （aspnetcore=/health、springboot=/actuator/health、nextjs=/api/health）不作为 live 前置
 5. live act 消耗 lab_dev 种子行（四阶段各 30；e2e 默认轮 globalSetup reseed 会还原翻转行）
+6. **trace 覆盖（运行差异登记）**：live 复跑会以 live-only trace 覆盖本仓 `.state/trace.json`
+   （M95.F02.I10/I11 条目仅存在于全量轮时点，live 轮后暂缺）；gate unit 档不消费 trace 不受影响，
+   full 档重跑全量即自愈再生
