@@ -11,45 +11,11 @@
 //     nextjs 阶段页带「我提交的（可撤回）」第二张表（见 stageTable 偏离登记④）。
 //   - 写路径纪律：act 真状态迁移消耗种子行——每用例首行一发，一轮 12 行 << 各态存量 30；
 //     禁计数断言；残余由 globalSetup reseed 吸收。
-// 偏离登记（2026-09-22 实测，对 brief 骨架的唯一增补）：installCorsBridge 测试缝——
-//   lab-nextjs :5201 /api/* 无 CORS 中间件（LAB_CORS_ALLOWED_ORIGINS 后端批未落地），
-//   react/vue（:5202/:5203）跨源调 :5201 被浏览器拦；波1 data-entry.spec.ts 同款先例，
-//   后端补 CORS 后本缝可整体删除（同源分支 route.fallback 零干预）。
+//   - 原 installCorsBridge 测试缝已删（2026-09-22 CORS 治本：lab-nextjs
+//     src/middleware.ts 落地 LAB_CORS_ALLOWED_ORIGINS，跨源直连不再被拦）。
 import { test, expect, type Page } from "@playwright/test";
 import { loginAndSeed, armNativeDialogAccept, fnRows, textRow } from "./helpers";
 import { requireE2eEnv } from "../src/env";
-
-/** CORS 测试缝（波1 data-entry.spec.ts 同款逐字拷贝，登记见文件头偏离注释）。 */
-async function installCorsBridge(page: Page): Promise<void> {
-  const apiOrigin = new URL(requireE2eEnv("E2E_API_BASE_URL")).origin;
-  await page.route(`${apiOrigin}/**`, async (route) => {
-    const req = route.request();
-    const origin = req.headers().origin;
-    if (!origin || origin === apiOrigin) return route.fallback();
-    const corsHeaders: Record<string, string> = {
-      "access-control-allow-origin": origin,
-      "access-control-allow-credentials": "true",
-    };
-    if (req.method() === "OPTIONS") {
-      return route.fulfill({
-        status: 204,
-        headers: {
-          ...corsHeaders,
-          "access-control-allow-methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS",
-          "access-control-allow-headers":
-            req.headers()["access-control-request-headers"] ?? "content-type,authorization",
-          "access-control-max-age": "86400",
-        },
-      });
-    }
-    try {
-      const res = await route.fetch();
-      await route.fulfill({ response: res, headers: corsHeaders });
-    } catch {
-      await route.fallback();
-    }
-  });
-}
 
 // 偏离登记⑥：vue vite dev 冷编译首导航可超 15s（2026-09-22 三端全跑实证：F05 渲染
 // 首试 15s 行不可见、retry 即绿）——首行可见等待放宽到 30s 吸收；本轮又实证 30s 等待
@@ -78,7 +44,7 @@ const PHASES: Phase[] = [
 
 test.beforeEach(async ({ page, request }) => {
   await armNativeDialogAccept(page);
-  await installCorsBridge(page); // react/vue 跨源调 :5201 被 CORS 拦——见文件头偏离登记
+  // CORS 治本（2026-09-22）：原 installCorsBridge 已删，跨源直连 :5201 由后端中间件放行。
   const session = await loginAndSeed(page, request);
   // 偏离登记③：nextjs operator 缝——nextjs FlowStagePage 的 act 需 operator =
   // authStore user.id/username，而 user 只从 zustand persist key「lab-auth」复原

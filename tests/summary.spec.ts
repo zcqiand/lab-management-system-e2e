@@ -8,10 +8,8 @@
 //   - 禁数字 parity 断言：nextjs /api/summary[/stats] 读 msw fixtures 不读 DB（登记后端批），
 //     react/vue 实算——跨端数字必不同源，只断结构与在位性。
 // 偏离登记（2026-09-22 实测，对 brief 骨架的增补，均沿家族先例）：
-//   ① installCorsBridge 测试缝——react/vue（:5202/:5203）跨源调 :5201 被浏览器拦
-//     （lab-nextjs /api/* 无 CORS 中间件，后端批未落地）；不加则 /summary 三源任一
-//     被拦即整页 PageLoading，I01 永不可见。波1 data-entry.spec.ts 同款逐字拷贝，
-//     后端补 CORS 后本缝可整体删除（同源分支 route.fallback 零干预）。
+//   ① 原 installCorsBridge 测试缝已删（2026-09-22 CORS 治本：lab-nextjs
+//     src/middleware.ts 落地 LAB_CORS_ALLOWED_ORIGINS，跨源直连不再被拦）。
 //   ② 表 DOM 形态三分——vue Table 原语 shadcn 迁移后**故意 div-based**（Table.vue:5-7
 //     注释查实：role=table/row/columnheader/cell，无 <table>/<thead>/<tbody> 元素），
 //     brief 骨架的 page.locator("table")+thead th+tbody tr 对 vue 恒 0。改 I01 容器内
@@ -21,45 +19,12 @@
 //     （波1/Task1 同款先例，report-workflow 偏离登记⑥），本文件级放宽吸收。
 import { test, expect, type Page } from "@playwright/test";
 import { loginAndSeed, armNativeDialogAccept } from "./helpers";
-import { requireE2eEnv } from "../src/env";
 
 test.setTimeout(90_000); // 偏离登记③（vue 冷编译，spec 局部不动全局）
 
-/** CORS 测试缝（波1 data-entry.spec.ts 同款逐字拷贝，登记见文件头偏离①）。 */
-async function installCorsBridge(page: Page): Promise<void> {
-  const apiOrigin = new URL(requireE2eEnv("E2E_API_BASE_URL")).origin;
-  await page.route(`${apiOrigin}/**`, async (route) => {
-    const req = route.request();
-    const origin = req.headers().origin;
-    if (!origin || origin === apiOrigin) return route.fallback();
-    const corsHeaders: Record<string, string> = {
-      "access-control-allow-origin": origin,
-      "access-control-allow-credentials": "true",
-    };
-    if (req.method() === "OPTIONS") {
-      return route.fulfill({
-        status: 204,
-        headers: {
-          ...corsHeaders,
-          "access-control-allow-methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS",
-          "access-control-allow-headers":
-            req.headers()["access-control-request-headers"] ?? "content-type,authorization",
-          "access-control-max-age": "86400",
-        },
-      });
-    }
-    try {
-      const res = await route.fetch();
-      await route.fulfill({ response: res, headers: corsHeaders });
-    } catch {
-      await route.fallback();
-    }
-  });
-}
-
 test.beforeEach(async ({ page, request }) => {
   await armNativeDialogAccept(page);
-  await installCorsBridge(page); // react/vue 跨源调 :5201 被 CORS 拦——见偏离登记①
+  // CORS 治本（2026-09-22）：原 installCorsBridge 已删，跨源直连 :5201 由后端中间件放行。
   await loginAndSeed(page, request);
   await page.goto("/summary");
 });

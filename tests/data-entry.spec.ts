@@ -19,56 +19,11 @@ import {
   uniqueCode,
   formDialog,
 } from "./helpers";
-import { requireE2eEnv } from "../src/env";
 
 // AC-3/4 单用例要完整开关弹窗两三轮，每轮 EntryModal 并发拉 ~9 个域端点
 // （parameters pageSize=1000 / standards 500 / report-names 500…，dev 编译下
 // 单端点可达数秒）——config 默认 30s 不够，本文件放宽到 90s（spec 局部，不动全局）。
 test.setTimeout(90_000);
-
-/**
- * CORS 测试缝（2026-09-22 实证登记，e2e-runtime §3.6「后端保持不动，桥接放测试缝」同款）：
- * lab-nextjs 的 /api/* route handlers **没有 CORS 中间件**——家族白名单 env
- * `LAB_CORS_ALLOWED_ORIGINS` 只在 springboot/aspnetcore 落地（multi-repo-family §6
- * 不变量「每个后端 allowlist 必须含所有跨源前端 origin」，nextjs 漏网），
- * react/vue（:5202/:5203）跨源调 :5201 的响应全被浏览器拦（无 ACAO 头，preflight 204
- * 也不带）。本缝用 page.route 在 **Node 侧**代理 API 响应并补 CORS 头：
- *   - 同源请求（nextjs project 自身）origin 头缺失或等于 API origin → route.fallback
- *     原样放行，零干预；
- *   - preflight OPTIONS → fulfill 204 + ACAO/ACAC/ACAH；
- *   - 其余 → route.fetch（Node 无 CORS 概念，透传 Authorization/body）后补两个头 fulfill。
- * 后端补上 CORS 中间件后本缝可整体删除（届时同源分支已是 no-op，删除零风险）。
- */
-async function installCorsBridge(page: Page): Promise<void> {
-  const apiOrigin = new URL(requireE2eEnv("E2E_API_BASE_URL")).origin;
-  await page.route(`${apiOrigin}/**`, async (route) => {
-    const req = route.request();
-    const origin = req.headers().origin;
-    if (!origin || origin === apiOrigin) return route.fallback();
-    const corsHeaders: Record<string, string> = {
-      "access-control-allow-origin": origin,
-      "access-control-allow-credentials": "true",
-    };
-    if (req.method() === "OPTIONS") {
-      return route.fulfill({
-        status: 204,
-        headers: {
-          ...corsHeaders,
-          "access-control-allow-methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS",
-          "access-control-allow-headers":
-            req.headers()["access-control-request-headers"] ?? "content-type,authorization",
-          "access-control-max-age": "86400",
-        },
-      });
-    }
-    try {
-      const res = await route.fetch();
-      await route.fulfill({ response: res, headers: corsHeaders });
-    } catch {
-      await route.fallback();
-    }
-  });
-}
 
 /** 行内「录入结果」按钮锚：三端 data-fn=M03.F03.I03 都落在**按钮本身**
  *  （react/vue=td 内 Button、nextjs=FlowStagePage rowActions button）——
@@ -78,7 +33,8 @@ const rowAction = (page: Page) => page.locator('[data-fn="M03.F03.I03"]');
 
 test.beforeEach(async ({ page, request }) => {
   await armNativeDialogAccept(page);
-  await installCorsBridge(page); // react/vue 跨源调 :5201 被 CORS 拦——见 installCorsBridge 注释
+  // CORS 治本（2026-09-22）：lab-nextjs src/middleware.ts 已落地 LAB_CORS_ALLOWED_ORIGINS
+  // 白名单，跨源直连 :5201 不再被拦——原 installCorsBridge 测试缝整体删除。
   await loginAndSeed(page, request);
   await page.goto("/data-entry");
   // 列表 = 后端 flowStatus=data_entry 过滤（种子 33 行）；行锚三端同

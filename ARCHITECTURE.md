@@ -99,7 +99,7 @@ sequenceDiagram
     NX-->>PW: token + refreshToken（再 GET /auth/me 取 tenantId）
     PW->>FE: addInitScript 预置 localStorage 会话 key<br/>（三端 key 名不同，全部预置，spec 不分叉）
     PW->>FE: page.goto 业务页
-    FE->>NX: API 调用（react/vue 跨源→installCorsBridge 测试缝）
+    FE->>NX: API 调用（react/vue 跨源→:5201 CORS 白名单放行）
     PW->>PW: 断言锚 data-fn + 可观察行为<br/>（唯一 code 基，禁跨端计数）
   end
   PW->>TR: onEnd 一次性落盘
@@ -110,7 +110,7 @@ sequenceDiagram
 要点：
 
 - **会话建立不走 UI**：三前端 `/login` 都是 SSO orchestrator、无密码表单，密码只被后端 `/api/auth/login` 接受——所以用 API 登录 + localStorage 预置（`seedSession` 用 sessionStorage 旗标保证「本 page 只播一次」，防登出后 init 脚本把 token 种回）。
-- **形状分歧桥接放测试缝**：契约裸数组 vs 前端 `{items,total}`、字典行补 id=code，由 `installRefShapeAdapters`（`page.route` 代理）和 spec 内 `installCorsBridge` 承接，后端保持契约形状不动。
+- **形状分歧桥接放测试缝**：契约裸数组 vs 前端 `{items,total}`、字典行补 id=code，由 `installRefShapeAdapters`（`page.route` 代理）承接，后端保持契约形状不动。（原 spec 内 `installCorsBridge` CORS 缝已删：2026-09-22 lab-nextjs src/middleware.ts 落地 LAB_CORS_ALLOWED_ORIGINS 治本。）
 - **trace 只收本仓命名空间 M95.\***：BASE ID 覆盖保留在标题文本供跨仓路径扫描（`src/trace-reporter.ts` 注释：进 BASE 覆盖矩阵是 suite 扩展，待人裁决）。
 
 ## 5. 依赖面

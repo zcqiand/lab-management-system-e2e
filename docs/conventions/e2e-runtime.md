@@ -36,7 +36,7 @@ lab-nextjs :5201（同款 `/api/auth/login` 形状）。lab-nextjs 是 DB 参照
 - nextjs：`NEXT_PUBLIC_API_BASE_URL=`（空 = 同源，走本仓 /api routes）
 
 CI 已内置这三个覆盖（ci.yml envs）。本机手动起服时同样带上，否则用例打到
-默认后端。CORS：lab-nextjs 白名单含 5201/5202/5203（multi-repo-family §6）。
+默认后端。CORS：lab-nextjs 白名单含 5201/5202/5203（multi-repo-family §6；2026-09-22 治本落地 src/middleware.ts，原 spec 内 installCorsBridge 测试缝已删）。
 
 ## 3.5 数据生命周期（ADR-0033 阶段三；2026-09-17 切真后端后语义更新）
 

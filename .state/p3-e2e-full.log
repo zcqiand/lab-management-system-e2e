@@ -1,0 +1,2703 @@
+
+> @lab/management-system-e2e@0.1.0 e2e
+> playwright test
+
+Snapshot: 23 tables / 4377 rows / dumped_at=2026-08-23T16:26:26.340Z / source=lab_dev
+  inspection_specialties: 10 rows upserted
+  contracts: 3 rows upserted
+  inspection_objects: 111 rows upserted
+  inspection_brands: 91 rows upserted
+  inspection_parameters: 587 rows upserted
+  inspection_standards: 103 rows upserted
+  inspection_report_names: 31 rows upserted
+  inspection_calculation_methods: 18 rows upserted
+  inspection_grades: 359 rows upserted
+  inspection_models: 125 rows upserted
+  inspection_object_parameters: 880 rows upserted
+  inspection_object_report_names: 32 rows upserted
+  inspection_object_standards: 233 rows upserted
+  inspection_param_interfaces: 18 rows upserted
+  inspection_param_interface_links: 22 rows upserted
+  inspection_report_name_parameters: 261 rows upserted
+  inspection_report_name_standards: 209 rows upserted
+  inspection_specialty_objects: 111 rows upserted
+  inspection_specs: 63 rows upserted
+  inspection_standard_parameters: 508 rows upserted
+  inspection_technical_requirements: 32 rows upserted
+  sample_receipts: 210 rows upserted
+  samples: 210 rows upserted
+  test_records: 150 rows upserted
+
+✓ done. 24 tables seeded; post-flight count(*) verified against snapshot.
+
+Running 102 tests using 1 worker
+
+  ok   1 [nextjs] › tests\contract-crud.spec.ts:24:5 › AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01 (3.0s)
+  x    2 [nextjs] › tests\contract-crud.spec.ts:52:5 › AC-2 创建合同：行出现 M95.F02.I02 覆盖 M02.F01.I02 (12.8s)
+  x    3 [nextjs] › tests\contract-crud.spec.ts:52:5 › AC-2 创建合同：行出现 M95.F02.I02 覆盖 M02.F01.I02 (retry #1) (12.8s)
+  x    4 [nextjs] › tests\contract-crud.spec.ts:57:5 › AC-3 编辑合同：项目名称变更落行 M95.F02.I02 覆盖 M02.F01.I02 (12.8s)
+  x    5 [nextjs] › tests\contract-crud.spec.ts:57:5 › AC-3 编辑合同：项目名称变更落行 M95.F02.I02 覆盖 M02.F01.I02 (retry #1) (12.8s)
+  x    6 [nextjs] › tests\contract-crud.spec.ts:74:5 › AC-4 删除合同：确认后行消失 M95.F02.I02 覆盖 M02.F01.I03 (12.9s)
+  x    7 [nextjs] › tests\contract-crud.spec.ts:74:5 › AC-4 删除合同：确认后行消失 M95.F02.I02 覆盖 M02.F01.I03 (retry #1) (12.8s)
+  ok   8 [nextjs] › tests\data-entry.spec.ts:176:5 › AC-1 数据录入列表渲染 data_entry 种子行 M95.F02.I09 覆盖 M03.F03.I01/I06 (3.8s)
+  ok   9 [nextjs] › tests\data-entry.spec.ts:180:5 › AC-2 录入弹窗打开：样品与检测参数就位 M95.F02.I09 覆盖 M03.F03.I01 (6.4s)
+  ok  10 [nextjs] › tests\data-entry.spec.ts:188:5 › AC-3 保存检测结果：唯一值持久（重开回读） M95.F02.I09 覆盖 M03.F03.I08 (6.9s)
+  ok  11 [nextjs] › tests\data-entry.spec.ts:201:5 › AC-4 再次保存：结果更新落定 M95.F02.I09 覆盖 M03.F03.I09 (8.9s)
+  ok  12 [nextjs] › tests\dict-crud.spec.ts:25:5 › AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01 (9.6s)
+  ok  13 [nextjs] › tests\dict-crud.spec.ts:29:5 › AC-2 新建品牌：行出现 M95.F02.I05 覆盖 M04.F09.I02 (10.8s)
+  x   14 [nextjs] › tests\dict-crud.spec.ts:40:5 › AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I03 (30.1s)
+  x   15 [nextjs] › tests\dict-crud.spec.ts:40:5 › AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I03 (retry #1) (30.1s)
+  ok  16 [nextjs] › tests\env-contract.spec.ts:7:5 › 三端 baseURL env 全部就绪且互不相同 M95.F01.I01 (5ms)
+  ok  17 [nextjs] › tests\env-contract.spec.ts:13:5 › config 声明恰好三个 project：nextjs/react/vue（顺序固定）M95.F01.I01 (1ms)
+  ok  18 [nextjs] › tests\infra-contract.spec.ts:20:5 › AC-1 .env.example 与 .env.test key 集合全等 M95.F01.I02 (1ms)
+  ok  19 [nextjs] › tests\infra-contract.spec.ts:26:5 › AC-2 playwright 三项目固定顺序 nextjs→react→vue M95.F01.I02 (3ms)
+  ok  20 [nextjs] › tests\infra-contract.spec.ts:34:5 › AC-3 运行时约定登记了后端目标与 lab 端口段 M95.F01.I02 覆盖 M95.F04.I01 (2ms)
+  ok  21 [nextjs] › tests\infra-contract.spec.ts:43:5 › AC-4 trace_reporter 声明归档 .state/trace.json（schema 1）M95.F01.I02 覆盖 M95.F03.I01 (1ms)
+  ok  22 [nextjs] › tests\login.spec.ts:32:5 › AC-1 未登录访问 /login 自动发起 SSO：authorize 参数完整且浏览器真实跳转 M95.F02.I01 覆盖 M01.F05.I01 (560ms)
+  x   23 [nextjs] › tests\login.spec.ts:44:5 › AC-2 回跳 state 校验失败：不发 callback、停留 /login 显示错误 M95.F02.I01 覆盖 M01.F05.I01 (10.5s)
+  x   24 [nextjs] › tests\login.spec.ts:44:5 › AC-2 回跳 state 校验失败：不发 callback、停留 /login 显示错误 M95.F02.I01 覆盖 M01.F05.I01 (retry #1) (10.5s)
+  ok  25 [nextjs] › tests\login.spec.ts:57:5 › AC-3 回跳 state 匹配：callback 换 token、lab JWT 落 localStorage 并离开登录页 M95.F02.I01 覆盖 M01.F05.I01 (1.2s)
+  ok  26 [nextjs] › tests\receipt-crud.spec.ts:69:5 › AC-1 委托书列表渲染 seed 行 M95.F02.I04 覆盖 M03.F01.I01 (3.6s)
+  ok  27 [nextjs] › tests\receipt-crud.spec.ts:74:5 › AC-2 创建委托书：行出现 M95.F02.I04 覆盖 M03.F01.I02 (7.1s)
+  ok  28 [nextjs] › tests\receipt-crud.spec.ts:78:5 › AC-3 编辑委托书：委托书编号变更落行 M95.F02.I04 覆盖 M03.F01.I03 (10.7s)
+  ok  29 [nextjs] › tests\receipt-crud.spec.ts:93:5 › AC-4 删除委托书：确认后行消失 M95.F02.I04 覆盖 M03.F01.I03 (5.7s)
+  ok  30 [nextjs] › tests\session.spec.ts:8:5 › AC-1 会话预置后业务页可达：合同列表渲染 seed 行 M95.F02.I03 覆盖 M00.F01.I01 (2.5s)
+  ok  31 [nextjs] › tests\session.spec.ts:18:5 › AC-2 登出：会话清理落回登录页 M95.F02.I03 覆盖 M01.F05.I04 (3.7s)
+  ok  32 [nextjs] › tests\smoke-nav.spec.ts:32:5 › AC-1 全部公共路由可达：无崩溃、无 API 5xx M95.F02.I07 (14.8s)
+  ok  33 [nextjs] › tests\smoke-nav.spec.ts:44:5 › AC-2 关键列表页有数据行（防死桩假绿）M95.F02.I07 (7.5s)
+  ok  34 [nextjs] › tests\techreq-crud.spec.ts:93:5 › AC-1 技术要求列表渲染 seed 行 M95.F02.I06 覆盖 M06.F06.I01 (5.6s)
+  x   35 [nextjs] › tests\techreq-crud.spec.ts:97:5 › AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02 (20.4s)
+  x   36 [nextjs] › tests\techreq-crud.spec.ts:97:5 › AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02 (retry #1) (19.8s)
+  x   37 [nextjs] › tests\techreq-crud.spec.ts:107:5 › AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03 (19.8s)
+  x   38 [nextjs] › tests\techreq-crud.spec.ts:107:5 › AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03 (retry #1) (19.8s)
+  ok  39 [nextjs] › tests\ui-parity.spec.ts:7:5 › AC-1 合同表头三端全等 M95.F02.I08 覆盖 M02.F01.I01 (2.6s)
+  ok  40 [nextjs] › tests\ui-parity.spec.ts:24:5 › AC-2 合同行操作含编辑/删除 M95.F02.I08 覆盖 M02.F01.I03 (2.6s)
+  ok  41 [nextjs] › tests\ui-parity.spec.ts:36:5 › AC-3 品牌字典与技术要求容器锚三端同构 M95.F02.I08 覆盖 M04.F09.I01 + M06.F06.I01 (4.7s)
+  x   42 [react] › tests\contract-crud.spec.ts:24:5 › AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01 (17.1s)
+  x   43 [react] › tests\contract-crud.spec.ts:24:5 › AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01 (retry #1) (17.1s)
+  x   44 [react] › tests\contract-crud.spec.ts:52:5 › AC-2 创建合同：行出现 M95.F02.I02 覆盖 M02.F01.I02 (17.2s)
+  x   45 [react] › tests\contract-crud.spec.ts:52:5 › AC-2 创建合同：行出现 M95.F02.I02 覆盖 M02.F01.I02 (retry #1) (17.1s)
+  x   46 [react] › tests\contract-crud.spec.ts:57:5 › AC-3 编辑合同：项目名称变更落行 M95.F02.I02 覆盖 M02.F01.I02 (17.1s)
+  x   47 [react] › tests\contract-crud.spec.ts:57:5 › AC-3 编辑合同：项目名称变更落行 M95.F02.I02 覆盖 M02.F01.I02 (retry #1) (17.1s)
+  x   48 [react] › tests\contract-crud.spec.ts:74:5 › AC-4 删除合同：确认后行消失 M95.F02.I02 覆盖 M02.F01.I03 (17.1s)
+  x   49 [react] › tests\contract-crud.spec.ts:74:5 › AC-4 删除合同：确认后行消失 M95.F02.I02 覆盖 M02.F01.I03 (retry #1) (17.1s)
+  ok  50 [react] › tests\data-entry.spec.ts:176:5 › AC-1 数据录入列表渲染 data_entry 种子行 M95.F02.I09 覆盖 M03.F03.I01/I06 (4.5s)
+  ok  51 [react] › tests\data-entry.spec.ts:180:5 › AC-2 录入弹窗打开：样品与检测参数就位 M95.F02.I09 覆盖 M03.F03.I01 (6.1s)
+  ok  52 [react] › tests\data-entry.spec.ts:188:5 › AC-3 保存检测结果：唯一值持久（重开回读） M95.F02.I09 覆盖 M03.F03.I08 (5.5s)
+  ok  53 [react] › tests\data-entry.spec.ts:201:5 › AC-4 再次保存：结果更新落定 M95.F02.I09 覆盖 M03.F03.I09 (4.9s)
+  x   54 [react] › tests\dict-crud.spec.ts:25:5 › AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01 (17.1s)
+  x   55 [react] › tests\dict-crud.spec.ts:25:5 › AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01 (retry #1) (17.2s)
+  x   56 [react] › tests\dict-crud.spec.ts:29:5 › AC-2 新建品牌：行出现 M95.F02.I05 覆盖 M04.F09.I02 (17.2s)
+  x   57 [react] › tests\dict-crud.spec.ts:29:5 › AC-2 新建品牌：行出现 M95.F02.I05 覆盖 M04.F09.I02 (retry #1) (17.2s)
+  x   58 [react] › tests\dict-crud.spec.ts:40:5 › AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I03 (17.2s)
+  x   59 [react] › tests\dict-crud.spec.ts:40:5 › AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I03 (retry #1) (17.2s)
+  ok  60 [react] › tests\env-contract.spec.ts:7:5 › 三端 baseURL env 全部就绪且互不相同 M95.F01.I01 (5ms)
+  ok  61 [react] › tests\env-contract.spec.ts:13:5 › config 声明恰好三个 project：nextjs/react/vue（顺序固定）M95.F01.I01 (1ms)
+  ok  62 [react] › tests\infra-contract.spec.ts:20:5 › AC-1 .env.example 与 .env.test key 集合全等 M95.F01.I02 (1ms)
+  ok  63 [react] › tests\infra-contract.spec.ts:26:5 › AC-2 playwright 三项目固定顺序 nextjs→react→vue M95.F01.I02 (4ms)
+  ok  64 [react] › tests\infra-contract.spec.ts:34:5 › AC-3 运行时约定登记了后端目标与 lab 端口段 M95.F01.I02 覆盖 M95.F04.I01 (2ms)
+  ok  65 [react] › tests\infra-contract.spec.ts:43:5 › AC-4 trace_reporter 声明归档 .state/trace.json（schema 1）M95.F01.I02 覆盖 M95.F03.I01 (1ms)
+  ok  66 [react] › tests\login.spec.ts:32:5 › AC-1 未登录访问 /login 自动发起 SSO：authorize 参数完整且浏览器真实跳转 M95.F02.I01 覆盖 M01.F05.I01 (478ms)
+  ok  67 [react] › tests\login.spec.ts:44:5 › AC-2 回跳 state 校验失败：不发 callback、停留 /login 显示错误 M95.F02.I01 覆盖 M01.F05.I01 (450ms)
+  ok  68 [react] › tests\login.spec.ts:57:5 › AC-3 回跳 state 匹配：callback 换 token、lab JWT 落 localStorage 并离开登录页 M95.F02.I01 覆盖 M01.F05.I01 (966ms)
+  x   69 [react] › tests\receipt-crud.spec.ts:69:5 › AC-1 委托书列表渲染 seed 行 M95.F02.I04 覆盖 M03.F01.I01 (18.3s)
+  x   70 [react] › tests\receipt-crud.spec.ts:69:5 › AC-1 委托书列表渲染 seed 行 M95.F02.I04 覆盖 M03.F01.I01 (retry #1) (17.2s)
+  x   71 [react] › tests\receipt-crud.spec.ts:74:5 › AC-2 创建委托书：行出现 M95.F02.I04 覆盖 M03.F01.I02 (17.2s)
+  x   72 [react] › tests\receipt-crud.spec.ts:74:5 › AC-2 创建委托书：行出现 M95.F02.I04 覆盖 M03.F01.I02 (retry #1) (17.2s)
+  x   73 [react] › tests\receipt-crud.spec.ts:78:5 › AC-3 编辑委托书：委托书编号变更落行 M95.F02.I04 覆盖 M03.F01.I03 (17.2s)
+  x   74 [react] › tests\receipt-crud.spec.ts:78:5 › AC-3 编辑委托书：委托书编号变更落行 M95.F02.I04 覆盖 M03.F01.I03 (retry #1) (17.2s)
+  x   75 [react] › tests\receipt-crud.spec.ts:93:5 › AC-4 删除委托书：确认后行消失 M95.F02.I04 覆盖 M03.F01.I03 (17.2s)
+  x   76 [react] › tests\receipt-crud.spec.ts:93:5 › AC-4 删除委托书：确认后行消失 M95.F02.I04 覆盖 M03.F01.I03 (retry #1) (17.2s)
+  x   77 [react] › tests\session.spec.ts:8:5 › AC-1 会话预置后业务页可达：合同列表渲染 seed 行 M95.F02.I03 覆盖 M00.F01.I01 (17.1s)
+  x   78 [react] › tests\session.spec.ts:8:5 › AC-1 会话预置后业务页可达：合同列表渲染 seed 行 M95.F02.I03 覆盖 M00.F01.I01 (retry #1) (17.1s)
+  x   79 [react] › tests\session.spec.ts:18:5 › AC-2 登出：会话清理落回登录页 M95.F02.I03 覆盖 M01.F05.I04 (17.1s)
+  x   80 [react] › tests\session.spec.ts:18:5 › AC-2 登出：会话清理落回登录页 M95.F02.I03 覆盖 M01.F05.I04 (retry #1) (17.6s)
+  x   81 [react] › tests\smoke-nav.spec.ts:32:5 › AC-1 全部公共路由可达：无崩溃、无 API 5xx M95.F02.I07 (17.1s)
+  x   82 [react] › tests\smoke-nav.spec.ts:32:5 › AC-1 全部公共路由可达：无崩溃、无 API 5xx M95.F02.I07 (retry #1) (17.1s)
+  x   83 [react] › tests\smoke-nav.spec.ts:44:5 › AC-2 关键列表页有数据行（防死桩假绿）M95.F02.I07 (17.1s)
+  x   84 [react] › tests\smoke-nav.spec.ts:44:5 › AC-2 关键列表页有数据行（防死桩假绿）M95.F02.I07 (retry #1) (17.1s)
+  x   85 [react] › tests\techreq-crud.spec.ts:93:5 › AC-1 技术要求列表渲染 seed 行 M95.F02.I06 覆盖 M06.F06.I01 (17.2s)
+  x   86 [react] › tests\techreq-crud.spec.ts:93:5 › AC-1 技术要求列表渲染 seed 行 M95.F02.I06 覆盖 M06.F06.I01 (retry #1) (17.2s)
+  x   87 [react] › tests\techreq-crud.spec.ts:97:5 › AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02 (17.2s)
+  x   88 [react] › tests\techreq-crud.spec.ts:97:5 › AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02 (retry #1) (17.2s)
+  x   89 [react] › tests\techreq-crud.spec.ts:107:5 › AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03 (17.2s)
+  x   90 [react] › tests\techreq-crud.spec.ts:107:5 › AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03 (retry #1) (17.2s)
+  x   91 [react] › tests\ui-parity.spec.ts:7:5 › AC-1 合同表头三端全等 M95.F02.I08 覆盖 M02.F01.I01 (17.1s)
+  x   92 [react] › tests\ui-parity.spec.ts:7:5 › AC-1 合同表头三端全等 M95.F02.I08 覆盖 M02.F01.I01 (retry #1) (17.1s)
+  x   93 [react] › tests\ui-parity.spec.ts:24:5 › AC-2 合同行操作含编辑/删除 M95.F02.I08 覆盖 M02.F01.I03 (17.1s)
+  x   94 [react] › tests\ui-parity.spec.ts:24:5 › AC-2 合同行操作含编辑/删除 M95.F02.I08 覆盖 M02.F01.I03 (retry #1) (17.1s)
+  x   95 [react] › tests\ui-parity.spec.ts:36:5 › AC-3 品牌字典与技术要求容器锚三端同构 M95.F02.I08 覆盖 M04.F09.I01 + M06.F06.I01 (17.1s)
+  x   96 [react] › tests\ui-parity.spec.ts:36:5 › AC-3 品牌字典与技术要求容器锚三端同构 M95.F02.I08 覆盖 M04.F09.I01 + M06.F06.I01 (retry #1) (17.1s)
+  x   97 [vue] › tests\contract-crud.spec.ts:24:5 › AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01 (17.0s)
+  x   98 [vue] › tests\contract-crud.spec.ts:24:5 › AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01 (retry #1) (17.0s)
+  x   99 [vue] › tests\contract-crud.spec.ts:52:5 › AC-2 创建合同：行出现 M95.F02.I02 覆盖 M02.F01.I02 (17.0s)
+  x  100 [vue] › tests\contract-crud.spec.ts:52:5 › AC-2 创建合同：行出现 M95.F02.I02 覆盖 M02.F01.I02 (retry #1) (17.0s)
+  x  101 [vue] › tests\contract-crud.spec.ts:57:5 › AC-3 编辑合同：项目名称变更落行 M95.F02.I02 覆盖 M02.F01.I02 (17.0s)
+  x  102 [vue] › tests\contract-crud.spec.ts:57:5 › AC-3 编辑合同：项目名称变更落行 M95.F02.I02 覆盖 M02.F01.I02 (retry #1) (17.0s)
+  x  103 [vue] › tests\contract-crud.spec.ts:74:5 › AC-4 删除合同：确认后行消失 M95.F02.I02 覆盖 M02.F01.I03 (17.0s)
+  x  104 [vue] › tests\contract-crud.spec.ts:74:5 › AC-4 删除合同：确认后行消失 M95.F02.I02 覆盖 M02.F01.I03 (retry #1) (17.0s)
+  x  105 [vue] › tests\data-entry.spec.ts:176:5 › AC-1 数据录入列表渲染 data_entry 种子行 M95.F02.I09 覆盖 M03.F03.I01/I06 (17.1s)
+  ok 106 [vue] › tests\data-entry.spec.ts:176:5 › AC-1 数据录入列表渲染 data_entry 种子行 M95.F02.I09 覆盖 M03.F03.I01/I06 (retry #1) (4.5s)
+  ok 107 [vue] › tests\data-entry.spec.ts:180:5 › AC-2 录入弹窗打开：样品与检测参数就位 M95.F02.I09 覆盖 M03.F03.I01 (6.9s)
+  ok 108 [vue] › tests\data-entry.spec.ts:188:5 › AC-3 保存检测结果：唯一值持久（重开回读） M95.F02.I09 覆盖 M03.F03.I08 (6.0s)
+  ok 109 [vue] › tests\data-entry.spec.ts:201:5 › AC-4 再次保存：结果更新落定 M95.F02.I09 覆盖 M03.F03.I09 (5.3s)
+  x  110 [vue] › tests\dict-crud.spec.ts:25:5 › AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01 (17.0s)
+  x  111 [vue] › tests\dict-crud.spec.ts:25:5 › AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01 (retry #1) (17.1s)
+  x  112 [vue] › tests\dict-crud.spec.ts:29:5 › AC-2 新建品牌：行出现 M95.F02.I05 覆盖 M04.F09.I02 (17.1s)
+  x  113 [vue] › tests\dict-crud.spec.ts:29:5 › AC-2 新建品牌：行出现 M95.F02.I05 覆盖 M04.F09.I02 (retry #1) (17.1s)
+  x  114 [vue] › tests\dict-crud.spec.ts:40:5 › AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I03 (17.1s)
+  x  115 [vue] › tests\dict-crud.spec.ts:40:5 › AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I03 (retry #1) (17.1s)
+  ok 116 [vue] › tests\env-contract.spec.ts:7:5 › 三端 baseURL env 全部就绪且互不相同 M95.F01.I01 (5ms)
+  ok 117 [vue] › tests\env-contract.spec.ts:13:5 › config 声明恰好三个 project：nextjs/react/vue（顺序固定）M95.F01.I01 (1ms)
+  ok 118 [vue] › tests\infra-contract.spec.ts:20:5 › AC-1 .env.example 与 .env.test key 集合全等 M95.F01.I02 (1ms)
+  ok 119 [vue] › tests\infra-contract.spec.ts:26:5 › AC-2 playwright 三项目固定顺序 nextjs→react→vue M95.F01.I02 (4ms)
+  ok 120 [vue] › tests\infra-contract.spec.ts:34:5 › AC-3 运行时约定登记了后端目标与 lab 端口段 M95.F01.I02 覆盖 M95.F04.I01 (2ms)
+  ok 121 [vue] › tests\infra-contract.spec.ts:43:5 › AC-4 trace_reporter 声明归档 .state/trace.json（schema 1）M95.F01.I02 覆盖 M95.F03.I01 (1ms)
+  ok 122 [vue] › tests\login.spec.ts:32:5 › AC-1 未登录访问 /login 自动发起 SSO：authorize 参数完整且浏览器真实跳转 M95.F02.I01 覆盖 M01.F05.I01 (330ms)
+  ok 123 [vue] › tests\login.spec.ts:44:5 › AC-2 回跳 state 校验失败：不发 callback、停留 /login 显示错误 M95.F02.I01 覆盖 M01.F05.I01 (303ms)
+  ok 124 [vue] › tests\login.spec.ts:57:5 › AC-3 回跳 state 匹配：callback 换 token、lab JWT 落 localStorage 并离开登录页 M95.F02.I01 覆盖 M01.F05.I01 (690ms)
+  x  125 [vue] › tests\receipt-crud.spec.ts:69:5 › AC-1 委托书列表渲染 seed 行 M95.F02.I04 覆盖 M03.F01.I01 (17.0s)
+  x  126 [vue] › tests\receipt-crud.spec.ts:69:5 › AC-1 委托书列表渲染 seed 行 M95.F02.I04 覆盖 M03.F01.I01 (retry #1) (17.1s)
+  x  127 [vue] › tests\receipt-crud.spec.ts:74:5 › AC-2 创建委托书：行出现 M95.F02.I04 覆盖 M03.F01.I02 (17.1s)
+  x  128 [vue] › tests\receipt-crud.spec.ts:74:5 › AC-2 创建委托书：行出现 M95.F02.I04 覆盖 M03.F01.I02 (retry #1) (17.1s)
+  x  129 [vue] › tests\receipt-crud.spec.ts:78:5 › AC-3 编辑委托书：委托书编号变更落行 M95.F02.I04 覆盖 M03.F01.I03 (17.1s)
+  x  130 [vue] › tests\receipt-crud.spec.ts:78:5 › AC-3 编辑委托书：委托书编号变更落行 M95.F02.I04 覆盖 M03.F01.I03 (retry #1) (17.1s)
+  x  131 [vue] › tests\receipt-crud.spec.ts:93:5 › AC-4 删除委托书：确认后行消失 M95.F02.I04 覆盖 M03.F01.I03 (17.1s)
+  x  132 [vue] › tests\receipt-crud.spec.ts:93:5 › AC-4 删除委托书：确认后行消失 M95.F02.I04 覆盖 M03.F01.I03 (retry #1) (17.1s)
+  x  133 [vue] › tests\session.spec.ts:8:5 › AC-1 会话预置后业务页可达：合同列表渲染 seed 行 M95.F02.I03 覆盖 M00.F01.I01 (17.0s)
+  x  134 [vue] › tests\session.spec.ts:8:5 › AC-1 会话预置后业务页可达：合同列表渲染 seed 行 M95.F02.I03 覆盖 M00.F01.I01 (retry #1) (17.0s)
+  x  135 [vue] › tests\session.spec.ts:18:5 › AC-2 登出：会话清理落回登录页 M95.F02.I03 覆盖 M01.F05.I04 (17.0s)
+  x  136 [vue] › tests\session.spec.ts:18:5 › AC-2 登出：会话清理落回登录页 M95.F02.I03 覆盖 M01.F05.I04 (retry #1) (17.0s)
+  ok 137 [vue] › tests\smoke-nav.spec.ts:32:5 › AC-1 全部公共路由可达：无崩溃、无 API 5xx M95.F02.I07 (3.4s)
+  x  138 [vue] › tests\smoke-nav.spec.ts:44:5 › AC-2 关键列表页有数据行（防死桩假绿）M95.F02.I07 (17.0s)
+  x  139 [vue] › tests\smoke-nav.spec.ts:44:5 › AC-2 关键列表页有数据行（防死桩假绿）M95.F02.I07 (retry #1) (17.0s)
+  x  140 [vue] › tests\techreq-crud.spec.ts:93:5 › AC-1 技术要求列表渲染 seed 行 M95.F02.I06 覆盖 M06.F06.I01 (17.1s)
+  x  141 [vue] › tests\techreq-crud.spec.ts:93:5 › AC-1 技术要求列表渲染 seed 行 M95.F02.I06 覆盖 M06.F06.I01 (retry #1) (17.1s)
+  x  142 [vue] › tests\techreq-crud.spec.ts:97:5 › AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02 (17.1s)
+  x  143 [vue] › tests\techreq-crud.spec.ts:97:5 › AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02 (retry #1) (17.1s)
+  x  144 [vue] › tests\techreq-crud.spec.ts:107:5 › AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03 (17.0s)
+  x  145 [vue] › tests\techreq-crud.spec.ts:107:5 › AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03 (retry #1) (17.1s)
+  x  146 [vue] › tests\ui-parity.spec.ts:7:5 › AC-1 合同表头三端全等 M95.F02.I08 覆盖 M02.F01.I01 (17.0s)
+  x  147 [vue] › tests\ui-parity.spec.ts:7:5 › AC-1 合同表头三端全等 M95.F02.I08 覆盖 M02.F01.I01 (retry #1) (17.0s)
+  x  148 [vue] › tests\ui-parity.spec.ts:24:5 › AC-2 合同行操作含编辑/删除 M95.F02.I08 覆盖 M02.F01.I03 (17.0s)
+  x  149 [vue] › tests\ui-parity.spec.ts:24:5 › AC-2 合同行操作含编辑/删除 M95.F02.I08 覆盖 M02.F01.I03 (retry #1) (17.0s)
+  x  150 [vue] › tests\ui-parity.spec.ts:36:5 › AC-3 品牌字典与技术要求容器锚三端同构 M95.F02.I08 覆盖 M04.F09.I01 + M06.F06.I01 (17.0s)
+  x  151 [vue] › tests\ui-parity.spec.ts:36:5 › AC-3 品牌字典与技术要求容器锚三端同构 M95.F02.I08 覆盖 M04.F09.I01 + M06.F06.I01 (retry #1) (17.0s)
+Snapshot: 23 tables / 4377 rows / dumped_at=2026-08-23T16:26:26.340Z / source=lab_dev
+  inspection_specialties: 10 rows upserted
+  contracts: 3 rows upserted
+  inspection_objects: 111 rows upserted
+  inspection_brands: 91 rows upserted
+  inspection_parameters: 587 rows upserted
+  inspection_standards: 103 rows upserted
+  inspection_report_names: 31 rows upserted
+  inspection_calculation_methods: 18 rows upserted
+  inspection_grades: 359 rows upserted
+  inspection_models: 125 rows upserted
+  inspection_object_parameters: 880 rows upserted
+  inspection_object_report_names: 32 rows upserted
+  inspection_object_standards: 233 rows upserted
+  inspection_param_interfaces: 18 rows upserted
+  inspection_param_interface_links: 22 rows upserted
+  inspection_report_name_parameters: 261 rows upserted
+  inspection_report_name_standards: 209 rows upserted
+  inspection_specialty_objects: 111 rows upserted
+  inspection_specs: 63 rows upserted
+  inspection_standard_parameters: 508 rows upserted
+  inspection_technical_requirements: 32 rows upserted
+  sample_receipts: 210 rows upserted
+  samples: 210 rows upserted
+  test_records: 150 rows upserted
+
+✓ done. 24 tables seeded; post-flight count(*) verified against snapshot.
+
+
+  1) [nextjs] › tests\contract-crud.spec.ts:52:5 › AC-2 创建合同：行出现 M95.F02.I02 覆盖 M02.F01.I02 ────────
+
+    Error: expect(locator).not.toBeVisible() failed
+
+    Locator:  locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first()
+    Expected: not visible
+    Received: visible
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "not toBeVisible" locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first() with timeout 10000ms
+      - waiting for locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first()
+        24 × locator resolved to <div data-state="open" aria-hidden="true" data-aria-hidden="true" data-slot="dialog-overlay" class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50"></div>
+           - unexpected value "visible"
+
+
+      46 |     .first()
+      47 |     .click();
+    > 48 |   await expect(dialog.first()).not.toBeVisible({ timeout: 10_000 });
+         |                                    ^
+      49 |   await expect(textRow(page, code).first()).toBeVisible({ timeout: 10_000 });
+      50 | }
+      51 |
+        at createContract (D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:48:36)
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:54:3
+
+    Error Context: test-results\contract-crud-AC-2-创建合同：行出现-M95-F02-I02-覆盖-M02-F01-I02-nextjs\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).not.toBeVisible() failed
+
+    Locator:  locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first()
+    Expected: not visible
+    Received: visible
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "not toBeVisible" locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first() with timeout 10000ms
+      - waiting for locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first()
+        24 × locator resolved to <div data-state="open" aria-hidden="true" data-aria-hidden="true" data-slot="dialog-overlay" class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50"></div>
+           - unexpected value "visible"
+
+
+      46 |     .first()
+      47 |     .click();
+    > 48 |   await expect(dialog.first()).not.toBeVisible({ timeout: 10_000 });
+         |                                    ^
+      49 |   await expect(textRow(page, code).first()).toBeVisible({ timeout: 10_000 });
+      50 | }
+      51 |
+        at createContract (D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:48:36)
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:54:3
+
+    Error Context: test-results\contract-crud-AC-2-创建合同：行出现-M95-F02-I02-覆盖-M02-F01-I02-nextjs-retry1\error-context.md
+
+  2) [nextjs] › tests\contract-crud.spec.ts:57:5 › AC-3 编辑合同：项目名称变更落行 M95.F02.I02 覆盖 M02.F01.I02 ───
+
+    Error: expect(locator).not.toBeVisible() failed
+
+    Locator:  locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first()
+    Expected: not visible
+    Received: visible
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "not toBeVisible" locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first() with timeout 10000ms
+      - waiting for locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first()
+        24 × locator resolved to <div data-state="open" aria-hidden="true" data-aria-hidden="true" data-slot="dialog-overlay" class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50"></div>
+           - unexpected value "visible"
+
+
+      46 |     .first()
+      47 |     .click();
+    > 48 |   await expect(dialog.first()).not.toBeVisible({ timeout: 10_000 });
+         |                                    ^
+      49 |   await expect(textRow(page, code).first()).toBeVisible({ timeout: 10_000 });
+      50 | }
+      51 |
+        at createContract (D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:48:36)
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:59:3
+
+    Error Context: test-results\contract-crud-AC-3-编辑合同：项目名称变更落行-M95-F02-I02-覆盖-M02-F01-I02-nextjs\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).not.toBeVisible() failed
+
+    Locator:  locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first()
+    Expected: not visible
+    Received: visible
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "not toBeVisible" locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first() with timeout 10000ms
+      - waiting for locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first()
+        24 × locator resolved to <div data-state="open" aria-hidden="true" data-aria-hidden="true" data-slot="dialog-overlay" class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50"></div>
+           - unexpected value "visible"
+
+
+      46 |     .first()
+      47 |     .click();
+    > 48 |   await expect(dialog.first()).not.toBeVisible({ timeout: 10_000 });
+         |                                    ^
+      49 |   await expect(textRow(page, code).first()).toBeVisible({ timeout: 10_000 });
+      50 | }
+      51 |
+        at createContract (D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:48:36)
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:59:3
+
+    Error Context: test-results\contract-crud-AC-3-编辑合同：项目名称变更落行-M95-F02-I02-覆盖-M02-F01-I02-nextjs-retry1\error-context.md
+
+  3) [nextjs] › tests\contract-crud.spec.ts:74:5 › AC-4 删除合同：确认后行消失 M95.F02.I02 覆盖 M02.F01.I03 ─────
+
+    Error: expect(locator).not.toBeVisible() failed
+
+    Locator:  locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first()
+    Expected: not visible
+    Received: visible
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "not toBeVisible" locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first() with timeout 10000ms
+      - waiting for locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first()
+        24 × locator resolved to <div data-state="open" aria-hidden="true" data-aria-hidden="true" data-slot="dialog-overlay" class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50"></div>
+           - unexpected value "visible"
+
+
+      46 |     .first()
+      47 |     .click();
+    > 48 |   await expect(dialog.first()).not.toBeVisible({ timeout: 10_000 });
+         |                                    ^
+      49 |   await expect(textRow(page, code).first()).toBeVisible({ timeout: 10_000 });
+      50 | }
+      51 |
+        at createContract (D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:48:36)
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:76:3
+
+    Error Context: test-results\contract-crud-AC-4-删除合同：确认后行消失-M95-F02-I02-覆盖-M02-F01-I03-nextjs\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).not.toBeVisible() failed
+
+    Locator:  locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first()
+    Expected: not visible
+    Received: visible
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "not toBeVisible" locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first() with timeout 10000ms
+      - waiting for locator('[role="dialog"]').or(locator('div.fixed.inset-0')).first()
+        24 × locator resolved to <div data-state="open" aria-hidden="true" data-aria-hidden="true" data-slot="dialog-overlay" class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50"></div>
+           - unexpected value "visible"
+
+
+      46 |     .first()
+      47 |     .click();
+    > 48 |   await expect(dialog.first()).not.toBeVisible({ timeout: 10_000 });
+         |                                    ^
+      49 |   await expect(textRow(page, code).first()).toBeVisible({ timeout: 10_000 });
+      50 | }
+      51 |
+        at createContract (D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:48:36)
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:76:3
+
+    Error Context: test-results\contract-crud-AC-4-删除合同：确认后行消失-M95-F02-I02-覆盖-M02-F01-I03-nextjs-retry1\error-context.md
+
+  4) [nextjs] › tests\dict-crud.spec.ts:40:5 › AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I03 ─────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid$="-list"] li').filter({ hasText: 'e2e-br-h2d0s5' }).first().locator('[data-fn="M04.F09.I03"]')
+
+
+      46 |   const row = page.locator('[data-testid$="-list"] li', { hasText: name }).first();
+      47 |   await expect(row).toBeVisible({ timeout: 10_000 });
+    > 48 |   await row.locator('[data-fn="M04.F09.I03"]').click();
+         |                                                ^
+      49 |   await confirmDeletion(page);
+      50 |   await expect(page.locator('[data-testid$="-list"] li', { hasText: name })).toHaveCount(0, {
+      51 |     timeout: 10_000,
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\dict-crud.spec.ts:48:48
+
+    Error Context: test-results\dict-crud-AC-3-删除品牌：确认后行消失-M95-F02-I05-覆盖-M04-F09-I03-nextjs\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid$="-list"] li').filter({ hasText: 'e2e-br-xuip4x' }).first().locator('[data-fn="M04.F09.I03"]')
+
+
+      46 |   const row = page.locator('[data-testid$="-list"] li', { hasText: name }).first();
+      47 |   await expect(row).toBeVisible({ timeout: 10_000 });
+    > 48 |   await row.locator('[data-fn="M04.F09.I03"]').click();
+         |                                                ^
+      49 |   await confirmDeletion(page);
+      50 |   await expect(page.locator('[data-testid$="-list"] li', { hasText: name })).toHaveCount(0, {
+      51 |     timeout: 10_000,
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\dict-crud.spec.ts:48:48
+
+    Error Context: test-results\dict-crud-AC-3-删除品牌：确认后行消失-M95-F02-I05-覆盖-M04-F09-I03-nextjs-retry1\error-context.md
+
+  5) [nextjs] › tests\login.spec.ts:44:5 › AC-2 回跳 state 校验失败：不发 callback、停留 /login 显示错误 M95.F02.I01 覆盖 M01.F05.I01 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText(/state 校验失败/).first()
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText(/state 校验失败/).first() with timeout 10000ms
+      - waiting for getByText(/state 校验失败/).first()
+
+
+      51 |   // → 必须 401 语义拒绝（session 过期/被攻击同路径），不得发 callback
+      52 |   await page.goto("/login?code=e2e-code&state=st-tampered");
+    > 53 |   await expect(page.getByText(/state 校验失败/).first()).toBeVisible({ timeout: 10_000 });
+         |                                                      ^
+      54 |   expect(callbackCalled, "state 不匹配不得发起 callback（防 CSRF 核心断言）").toBe(false);
+      55 | });
+      56 |
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\login.spec.ts:53:54
+
+    Error Context: test-results\login-AC-2-回跳-state-校验失败：不-b1bbe--M95-F02-I01-覆盖-M01-F05-I01-nextjs\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText(/state 校验失败/).first()
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText(/state 校验失败/).first() with timeout 10000ms
+      - waiting for getByText(/state 校验失败/).first()
+
+
+      51 |   // → 必须 401 语义拒绝（session 过期/被攻击同路径），不得发 callback
+      52 |   await page.goto("/login?code=e2e-code&state=st-tampered");
+    > 53 |   await expect(page.getByText(/state 校验失败/).first()).toBeVisible({ timeout: 10_000 });
+         |                                                      ^
+      54 |   expect(callbackCalled, "state 不匹配不得发起 callback（防 CSRF 核心断言）").toBe(false);
+      55 | });
+      56 |
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\login.spec.ts:53:54
+
+    Error Context: test-results\login-AC-2-回跳-state-校验失败：不-b1bbe--M95-F02-I01-覆盖-M01-F05-I01-nextjs-retry1\error-context.md
+
+  6) [nextjs] › tests\techreq-crud.spec.ts:97:5 › AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02 ─
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tbody tr, [role="row"]:not(:has([role="columnheader"])), [data-testid$="-list"] li').filter({ hasText: 'e2e-br-x23y59' }).first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tbody tr, [role="row"]:not(:has([role="columnheader"])), [data-testid$="-list"] li').filter({ hasText: 'e2e-br-x23y59' }).first() with timeout 15000ms
+      - waiting for locator('tbody tr, [role="row"]:not(:has([role="columnheader"])), [data-testid$="-list"] li').filter({ hasText: 'e2e-br-x23y59' }).first()
+
+
+      100 |   await createRow(page, brand);
+      101 |   // 唯一 brand 定位新行（三端共享真后端串行跑，计数断言会被其他 project 的写入污染）
+    > 102 |   await expect(page.locator(ROWS).filter({ hasText: brand }).first()).toBeVisible({
+          |                                                                       ^
+      103 |     timeout: 15_000,
+      104 |   });
+      105 | });
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:102:71
+
+    Error Context: test-results\techreq-crud-AC-2-新建技术要求：保-f1fc5--M95-F02-I06-覆盖-M06-F06-I02-nextjs\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tbody tr, [role="row"]:not(:has([role="columnheader"])), [data-testid$="-list"] li').filter({ hasText: 'e2e-br-6v2y4h' }).first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tbody tr, [role="row"]:not(:has([role="columnheader"])), [data-testid$="-list"] li').filter({ hasText: 'e2e-br-6v2y4h' }).first() with timeout 15000ms
+      - waiting for locator('tbody tr, [role="row"]:not(:has([role="columnheader"])), [data-testid$="-list"] li').filter({ hasText: 'e2e-br-6v2y4h' }).first()
+
+
+      100 |   await createRow(page, brand);
+      101 |   // 唯一 brand 定位新行（三端共享真后端串行跑，计数断言会被其他 project 的写入污染）
+    > 102 |   await expect(page.locator(ROWS).filter({ hasText: brand }).first()).toBeVisible({
+          |                                                                       ^
+      103 |     timeout: 15_000,
+      104 |   });
+      105 | });
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:102:71
+
+    Error Context: test-results\techreq-crud-AC-2-新建技术要求：保-f1fc5--M95-F02-I06-覆盖-M06-F06-I02-nextjs-retry1\error-context.md
+
+  7) [nextjs] › tests\techreq-crud.spec.ts:107:5 › AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03 ──
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tbody tr, [role="row"]:not(:has([role="columnheader"])), [data-testid$="-list"] li').filter({ hasText: 'e2e-br-bet7um' }).first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tbody tr, [role="row"]:not(:has([role="columnheader"])), [data-testid$="-list"] li').filter({ hasText: 'e2e-br-bet7um' }).first() with timeout 15000ms
+      - waiting for locator('tbody tr, [role="row"]:not(:has([role="columnheader"])), [data-testid$="-list"] li').filter({ hasText: 'e2e-br-bet7um' }).first()
+
+
+      110 |   await createRow(page, brand);
+      111 |   const mine = page.locator(ROWS).filter({ hasText: brand }).first();
+    > 112 |   await expect(mine).toBeVisible({ timeout: 15_000 });
+          |                      ^
+      113 |   // 删掉刚建的那条（brand 全局唯一）：行内 I03，确认（原生 confirm 已预挂 accept）
+      114 |   await mine.locator('[data-fn="M06.F06.I03"]').click();
+      115 |   await confirmDeletion(page);
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:112:22
+
+    Error Context: test-results\techreq-crud-AC-3-删除技术要求：确认后行数回落-M95-F02-I06-覆盖-M06-F06-I03-nextjs\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tbody tr, [role="row"]:not(:has([role="columnheader"])), [data-testid$="-list"] li').filter({ hasText: 'e2e-br-gf89rd' }).first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tbody tr, [role="row"]:not(:has([role="columnheader"])), [data-testid$="-list"] li').filter({ hasText: 'e2e-br-gf89rd' }).first() with timeout 15000ms
+      - waiting for locator('tbody tr, [role="row"]:not(:has([role="columnheader"])), [data-testid$="-list"] li').filter({ hasText: 'e2e-br-gf89rd' }).first()
+
+
+      110 |   await createRow(page, brand);
+      111 |   const mine = page.locator(ROWS).filter({ hasText: brand }).first();
+    > 112 |   await expect(mine).toBeVisible({ timeout: 15_000 });
+          |                      ^
+      113 |   // 删掉刚建的那条（brand 全局唯一）：行内 I03，确认（原生 confirm 已预挂 accept）
+      114 |   await mine.locator('[data-fn="M06.F06.I03"]').click();
+      115 |   await confirmDeletion(page);
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:112:22
+
+    Error Context: test-results\techreq-crud-AC-3-删除技术要求：确认后行数回落-M95-F02-I06-覆盖-M06-F06-I03-nextjs-retry1\error-context.md
+
+  8) [react] › tests\contract-crud.spec.ts:24:5 › AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01 ────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-1-合同列表渲染-seed-行-M95-F02-I02-覆盖-M02-F01-I01-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-1-合同列表渲染-seed-行-M95-F02-I02-覆盖-M02-F01-I01-react-retry1\error-context.md
+
+  9) [react] › tests\contract-crud.spec.ts:52:5 › AC-2 创建合同：行出现 M95.F02.I02 覆盖 M02.F01.I02 ─────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-2-创建合同：行出现-M95-F02-I02-覆盖-M02-F01-I02-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-2-创建合同：行出现-M95-F02-I02-覆盖-M02-F01-I02-react-retry1\error-context.md
+
+  10) [react] › tests\contract-crud.spec.ts:57:5 › AC-3 编辑合同：项目名称变更落行 M95.F02.I02 覆盖 M02.F01.I02 ───
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-3-编辑合同：项目名称变更落行-M95-F02-I02-覆盖-M02-F01-I02-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-3-编辑合同：项目名称变更落行-M95-F02-I02-覆盖-M02-F01-I02-react-retry1\error-context.md
+
+  11) [react] › tests\contract-crud.spec.ts:74:5 › AC-4 删除合同：确认后行消失 M95.F02.I02 覆盖 M02.F01.I03 ─────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-4-删除合同：确认后行消失-M95-F02-I02-覆盖-M02-F01-I03-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-4-删除合同：确认后行消失-M95-F02-I02-覆盖-M02-F01-I03-react-retry1\error-context.md
+
+  12) [react] › tests\dict-crud.spec.ts:25:5 › AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01 ──
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      20 |   await loginAndSeed(page, request);
+      21 |   await page.goto("/brands");
+    > 22 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      23 | });
+      24 |
+      25 | test("AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\dict-crud.spec.ts:22:65
+
+    Error Context: test-results\dict-crud-AC-1-品牌字典：选类别后-seed-行渲染-M95-F02-I05-覆盖-M04-F09-I01-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      20 |   await loginAndSeed(page, request);
+      21 |   await page.goto("/brands");
+    > 22 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      23 | });
+      24 |
+      25 | test("AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\dict-crud.spec.ts:22:65
+
+    Error Context: test-results\dict-crud-AC-1-品牌字典：选类别后-seed-行渲染-M95-F02-I05-覆盖-M04-F09-I01-react-retry1\error-context.md
+
+  13) [react] › tests\dict-crud.spec.ts:29:5 › AC-2 新建品牌：行出现 M95.F02.I05 覆盖 M04.F09.I02 ────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      20 |   await loginAndSeed(page, request);
+      21 |   await page.goto("/brands");
+    > 22 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      23 | });
+      24 |
+      25 | test("AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\dict-crud.spec.ts:22:65
+
+    Error Context: test-results\dict-crud-AC-2-新建品牌：行出现-M95-F02-I05-覆盖-M04-F09-I02-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      20 |   await loginAndSeed(page, request);
+      21 |   await page.goto("/brands");
+    > 22 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      23 | });
+      24 |
+      25 | test("AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\dict-crud.spec.ts:22:65
+
+    Error Context: test-results\dict-crud-AC-2-新建品牌：行出现-M95-F02-I05-覆盖-M04-F09-I02-react-retry1\error-context.md
+
+  14) [react] › tests\dict-crud.spec.ts:40:5 › AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I03 ─────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      20 |   await loginAndSeed(page, request);
+      21 |   await page.goto("/brands");
+    > 22 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      23 | });
+      24 |
+      25 | test("AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\dict-crud.spec.ts:22:65
+
+    Error Context: test-results\dict-crud-AC-3-删除品牌：确认后行消失-M95-F02-I05-覆盖-M04-F09-I03-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      20 |   await loginAndSeed(page, request);
+      21 |   await page.goto("/brands");
+    > 22 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      23 | });
+      24 |
+      25 | test("AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\dict-crud.spec.ts:22:65
+
+    Error Context: test-results\dict-crud-AC-3-删除品牌：确认后行消失-M95-F02-I05-覆盖-M04-F09-I03-react-retry1\error-context.md
+
+  15) [react] › tests\receipt-crud.spec.ts:69:5 › AC-1 委托书列表渲染 seed 行 M95.F02.I04 覆盖 M03.F01.I01 ───
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-1-委托书列表渲染-seed-行-M95-F02-I04-覆盖-M03-F01-I01-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-1-委托书列表渲染-seed-行-M95-F02-I04-覆盖-M03-F01-I01-react-retry1\error-context.md
+
+  16) [react] › tests\receipt-crud.spec.ts:74:5 › AC-2 创建委托书：行出现 M95.F02.I04 覆盖 M03.F01.I02 ────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-2-创建委托书：行出现-M95-F02-I04-覆盖-M03-F01-I02-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-2-创建委托书：行出现-M95-F02-I04-覆盖-M03-F01-I02-react-retry1\error-context.md
+
+  17) [react] › tests\receipt-crud.spec.ts:78:5 › AC-3 编辑委托书：委托书编号变更落行 M95.F02.I04 覆盖 M03.F01.I03 ──
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-3-编辑委托书：委托书编号变更落行-M95-F02-I04-覆盖-M03-F01-I03-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-3-编辑委托书：委托书编号变更落行-M95-F02-I04-覆盖-M03-F01-I03-react-retry1\error-context.md
+
+  18) [react] › tests\receipt-crud.spec.ts:93:5 › AC-4 删除委托书：确认后行消失 M95.F02.I04 覆盖 M03.F01.I03 ─────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-4-删除委托书：确认后行消失-M95-F02-I04-覆盖-M03-F01-I03-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-4-删除委托书：确认后行消失-M95-F02-I04-覆盖-M03-F01-I03-react-retry1\error-context.md
+
+  19) [react] › tests\session.spec.ts:8:5 › AC-1 会话预置后业务页可达：合同列表渲染 seed 行 M95.F02.I03 覆盖 M00.F01.I01 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+       9 |   await loginAndSeed(page, request);
+      10 |   await page.goto("/contracts");
+    > 11 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      12 |   // 主列表非空（seed 合同 ≥1 行）——直击死桩类假绿
+      13 |   const rows = fnRow(page, "M02.F01.I01");
+      14 |   await expect(rows.first()).toBeVisible({ timeout: 15_000 });
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\session.spec.ts:11:48
+
+    Error Context: test-results\session-AC-1-会话预置后业务页可达：合同-c9f44--M95-F02-I03-覆盖-M00-F01-I01-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+       9 |   await loginAndSeed(page, request);
+      10 |   await page.goto("/contracts");
+    > 11 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      12 |   // 主列表非空（seed 合同 ≥1 行）——直击死桩类假绿
+      13 |   const rows = fnRow(page, "M02.F01.I01");
+      14 |   await expect(rows.first()).toBeVisible({ timeout: 15_000 });
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\session.spec.ts:11:48
+
+    Error Context: test-results\session-AC-1-会话预置后业务页可达：合同-c9f44--M95-F02-I03-覆盖-M00-F01-I01-react-retry1\error-context.md
+
+  20) [react] › tests\session.spec.ts:18:5 › AC-2 登出：会话清理落回登录页 M95.F02.I03 覆盖 M01.F05.I04 ──────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 |
+      23 |   // 登出锚：react/nextjs data-testid=logout-button（data-fn 分别 I04/I05，已登记分歧）；
+      24 |   // vue 仅 data-fn=M01.F05.I04。superset 选择器，三端各命中恰好一个元素。
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\session.spec.ts:21:48
+
+    Error Context: test-results\session-AC-2-登出：会话清理落回登录页-M95-F02-I03-覆盖-M01-F05-I04-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 |
+      23 |   // 登出锚：react/nextjs data-testid=logout-button（data-fn 分别 I04/I05，已登记分歧）；
+      24 |   // vue 仅 data-fn=M01.F05.I04。superset 选择器，三端各命中恰好一个元素。
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\session.spec.ts:21:48
+
+    Error Context: test-results\session-AC-2-登出：会话清理落回登录页-M95-F02-I03-覆盖-M01-F05-I04-react-retry1\error-context.md
+
+  21) [react] › tests\smoke-nav.spec.ts:32:5 › AC-1 全部公共路由可达：无崩溃、无 API 5xx M95.F02.I07 ─────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('main, #__next, #root, #app').first()
+    Expected: visible
+    Received: hidden
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toBeVisible" locator('main, #__next, #root, #app').first() with timeout 15000ms
+      - waiting for locator('main, #__next, #root, #app').first()
+        33 × locator resolved to <div id="root"></div>
+           - unexpected value "hidden"
+
+
+      36 |     await page.goto(route);
+      37 |     // 业务壳已挂载（三端公共锚：合同表首行或任意页面标题区渲染完成即视为可达）
+    > 38 |     await expect(page.locator("main, #__next, #root, #app").first()).toBeVisible({ timeout: 15_000 });
+         |                                                                      ^
+      39 |     expect(failures.errors, `${route} 出现 pageerror`).toEqual([]);
+      40 |     expect(failures.api5xx, `${route} 出现 API 5xx`).toEqual([]);
+      41 |   }
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\smoke-nav.spec.ts:38:70
+
+    Error Context: test-results\smoke-nav-AC-1-全部公共路由可达：无崩溃、无-API-5xx-M95-F02-I07-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('main, #__next, #root, #app').first()
+    Expected: visible
+    Received: hidden
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toBeVisible" locator('main, #__next, #root, #app').first() with timeout 15000ms
+      - waiting for locator('main, #__next, #root, #app').first()
+        33 × locator resolved to <div id="root"></div>
+           - unexpected value "hidden"
+
+
+      36 |     await page.goto(route);
+      37 |     // 业务壳已挂载（三端公共锚：合同表首行或任意页面标题区渲染完成即视为可达）
+    > 38 |     await expect(page.locator("main, #__next, #root, #app").first()).toBeVisible({ timeout: 15_000 });
+         |                                                                      ^
+      39 |     expect(failures.errors, `${route} 出现 pageerror`).toEqual([]);
+      40 |     expect(failures.api5xx, `${route} 出现 API 5xx`).toEqual([]);
+      41 |   }
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\smoke-nav.spec.ts:38:70
+
+    Error Context: test-results\smoke-nav-AC-1-全部公共路由可达：无崩溃、无-API-5xx-M95-F02-I07-react-retry1\error-context.md
+
+  22) [react] › tests\smoke-nav.spec.ts:44:5 › AC-2 关键列表页有数据行（防死桩假绿）M95.F02.I07 ────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+
+
+      45 |   await loginAndSeed(page, request);
+      46 |   await page.goto("/contracts");
+    > 47 |   await expect(fnRow(page, "M02.F01.I01").first()).toBeVisible({ timeout: 15_000 });
+         |                                                    ^
+      48 |   await page.goto("/brands");
+      49 |   // superset 行锚（已登记分歧）：字典行 react=tr、vue/nextjs=li
+      50 |   await expect(
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\smoke-nav.spec.ts:47:52
+
+    Error Context: test-results\smoke-nav-AC-2-关键列表页有数据行（防死桩假绿）M95-F02-I07-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+
+
+      45 |   await loginAndSeed(page, request);
+      46 |   await page.goto("/contracts");
+    > 47 |   await expect(fnRow(page, "M02.F01.I01").first()).toBeVisible({ timeout: 15_000 });
+         |                                                    ^
+      48 |   await page.goto("/brands");
+      49 |   // superset 行锚（已登记分歧）：字典行 react=tr、vue/nextjs=li
+      50 |   await expect(
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\smoke-nav.spec.ts:47:52
+
+    Error Context: test-results\smoke-nav-AC-2-关键列表页有数据行（防死桩假绿）M95-F02-I07-react-retry1\error-context.md
+
+  23) [react] › tests\techreq-crud.spec.ts:93:5 › AC-1 技术要求列表渲染 seed 行 M95.F02.I06 覆盖 M06.F06.I01 ──
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M06.F06.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M06.F06.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M06.F06.I01"]').first()
+
+
+      31 |   await loginAndSeed(page, request);
+      32 |   await page.goto("/inspection-technical-requirements");
+    > 33 |   await expect(page.locator(CONTAINER).first()).toBeVisible({ timeout: 15_000 });
+         |                                                 ^
+      34 | });
+      35 |
+      36 | /** nextjs 二级树需选检测项目→检测标准右列才出数据（react/vue 平铺表格无此步，
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:33:49
+
+    Error Context: test-results\techreq-crud-AC-1-技术要求列表渲染-seed-行-M95-F02-I06-覆盖-M06-F06-I01-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M06.F06.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M06.F06.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M06.F06.I01"]').first()
+
+
+      31 |   await loginAndSeed(page, request);
+      32 |   await page.goto("/inspection-technical-requirements");
+    > 33 |   await expect(page.locator(CONTAINER).first()).toBeVisible({ timeout: 15_000 });
+         |                                                 ^
+      34 | });
+      35 |
+      36 | /** nextjs 二级树需选检测项目→检测标准右列才出数据（react/vue 平铺表格无此步，
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:33:49
+
+    Error Context: test-results\techreq-crud-AC-1-技术要求列表渲染-seed-行-M95-F02-I06-覆盖-M06-F06-I01-react-retry1\error-context.md
+
+  24) [react] › tests\techreq-crud.spec.ts:97:5 › AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02 ─
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M06.F06.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M06.F06.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M06.F06.I01"]').first()
+
+
+      31 |   await loginAndSeed(page, request);
+      32 |   await page.goto("/inspection-technical-requirements");
+    > 33 |   await expect(page.locator(CONTAINER).first()).toBeVisible({ timeout: 15_000 });
+         |                                                 ^
+      34 | });
+      35 |
+      36 | /** nextjs 二级树需选检测项目→检测标准右列才出数据（react/vue 平铺表格无此步，
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:33:49
+
+    Error Context: test-results\techreq-crud-AC-2-新建技术要求：保-f1fc5--M95-F02-I06-覆盖-M06-F06-I02-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M06.F06.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M06.F06.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M06.F06.I01"]').first()
+
+
+      31 |   await loginAndSeed(page, request);
+      32 |   await page.goto("/inspection-technical-requirements");
+    > 33 |   await expect(page.locator(CONTAINER).first()).toBeVisible({ timeout: 15_000 });
+         |                                                 ^
+      34 | });
+      35 |
+      36 | /** nextjs 二级树需选检测项目→检测标准右列才出数据（react/vue 平铺表格无此步，
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:33:49
+
+    Error Context: test-results\techreq-crud-AC-2-新建技术要求：保-f1fc5--M95-F02-I06-覆盖-M06-F06-I02-react-retry1\error-context.md
+
+  25) [react] › tests\techreq-crud.spec.ts:107:5 › AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03 ──
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M06.F06.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M06.F06.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M06.F06.I01"]').first()
+
+
+      31 |   await loginAndSeed(page, request);
+      32 |   await page.goto("/inspection-technical-requirements");
+    > 33 |   await expect(page.locator(CONTAINER).first()).toBeVisible({ timeout: 15_000 });
+         |                                                 ^
+      34 | });
+      35 |
+      36 | /** nextjs 二级树需选检测项目→检测标准右列才出数据（react/vue 平铺表格无此步，
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:33:49
+
+    Error Context: test-results\techreq-crud-AC-3-删除技术要求：确认后行数回落-M95-F02-I06-覆盖-M06-F06-I03-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M06.F06.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M06.F06.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M06.F06.I01"]').first()
+
+
+      31 |   await loginAndSeed(page, request);
+      32 |   await page.goto("/inspection-technical-requirements");
+    > 33 |   await expect(page.locator(CONTAINER).first()).toBeVisible({ timeout: 15_000 });
+         |                                                 ^
+      34 | });
+      35 |
+      36 | /** nextjs 二级树需选检测项目→检测标准右列才出数据（react/vue 平铺表格无此步，
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:33:49
+
+    Error Context: test-results\techreq-crud-AC-3-删除技术要求：确认后行数回落-M95-F02-I06-覆盖-M06-F06-I03-react-retry1\error-context.md
+
+  26) [react] › tests\ui-parity.spec.ts:7:5 › AC-1 合同表头三端全等 M95.F02.I08 覆盖 M02.F01.I01 ─────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+
+
+       8 |   await loginAndSeed(page, request);
+       9 |   await page.goto("/contracts");
+    > 10 |   await expect(fnRow(page, "M02.F01.I01").first()).toBeVisible({ timeout: 15_000 });
+         |                                                    ^
+      11 |   // superset 表头：react/nextjs 真 thead th；vue shadcn 迁移后 div[role=columnheader]
+      12 |   const headers = await page.locator('thead th, [role="columnheader"]').allTextContents();
+      13 |   expect(headers.map((h) => h.trim())).toEqual([
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\ui-parity.spec.ts:10:52
+
+    Error Context: test-results\ui-parity-AC-1-合同表头三端全等-M95-F02-I08-覆盖-M02-F01-I01-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+
+
+       8 |   await loginAndSeed(page, request);
+       9 |   await page.goto("/contracts");
+    > 10 |   await expect(fnRow(page, "M02.F01.I01").first()).toBeVisible({ timeout: 15_000 });
+         |                                                    ^
+      11 |   // superset 表头：react/nextjs 真 thead th；vue shadcn 迁移后 div[role=columnheader]
+      12 |   const headers = await page.locator('thead th, [role="columnheader"]').allTextContents();
+      13 |   expect(headers.map((h) => h.trim())).toEqual([
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\ui-parity.spec.ts:10:52
+
+    Error Context: test-results\ui-parity-AC-1-合同表头三端全等-M95-F02-I08-覆盖-M02-F01-I01-react-retry1\error-context.md
+
+  27) [react] › tests\ui-parity.spec.ts:24:5 › AC-2 合同行操作含编辑/删除 M95.F02.I08 覆盖 M02.F01.I03 ─────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+
+
+      26 |   await page.goto("/contracts");
+      27 |   const row = fnRow(page, "M02.F01.I01").first();
+    > 28 |   await expect(row).toBeVisible({ timeout: 15_000 });
+         |                     ^
+      29 |   await expect(row.getByRole("button", { name: "编辑" })).toBeVisible();
+      30 |   // 删除锚分歧（已登记）：react/vue 行内 I03；nextjs 行内按钮无 data-fn（可观察
+      31 |   // 文本「删除」）。确认交互形态分歧另登记（react ConfirmModal / vue ConfirmDialog /
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\ui-parity.spec.ts:28:21
+
+    Error Context: test-results\ui-parity-AC-2-合同行操作含编辑-删除-M95-F02-I08-覆盖-M02-F01-I03-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+
+
+      26 |   await page.goto("/contracts");
+      27 |   const row = fnRow(page, "M02.F01.I01").first();
+    > 28 |   await expect(row).toBeVisible({ timeout: 15_000 });
+         |                     ^
+      29 |   await expect(row.getByRole("button", { name: "编辑" })).toBeVisible();
+      30 |   // 删除锚分歧（已登记）：react/vue 行内 I03；nextjs 行内按钮无 data-fn（可观察
+      31 |   // 文本「删除」）。确认交互形态分歧另登记（react ConfirmModal / vue ConfirmDialog /
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\ui-parity.spec.ts:28:21
+
+    Error Context: test-results\ui-parity-AC-2-合同行操作含编辑-删除-M95-F02-I08-覆盖-M02-F01-I03-react-retry1\error-context.md
+
+  28) [react] › tests\ui-parity.spec.ts:36:5 › AC-3 品牌字典与技术要求容器锚三端同构 M95.F02.I08 覆盖 M04.F09.I01 + M06.F06.I01 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      37 |   await loginAndSeed(page, request);
+      38 |   await page.goto("/brands");
+    > 39 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      40 |   await page.goto("/inspection-technical-requirements");
+      41 |   await expect(page.locator('[data-fn="M06.F06.I01"]').first()).toBeVisible({ timeout: 15_000 });
+      42 | });
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\ui-parity.spec.ts:39:65
+
+    Error Context: test-results\ui-parity-AC-3-品牌字典与技术要求容器-af5a1--覆盖-M04-F09-I01-M06-F06-I01-react\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      37 |   await loginAndSeed(page, request);
+      38 |   await page.goto("/brands");
+    > 39 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      40 |   await page.goto("/inspection-technical-requirements");
+      41 |   await expect(page.locator('[data-fn="M06.F06.I01"]').first()).toBeVisible({ timeout: 15_000 });
+      42 | });
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\ui-parity.spec.ts:39:65
+
+    Error Context: test-results\ui-parity-AC-3-品牌字典与技术要求容器-af5a1--覆盖-M04-F09-I01-M06-F06-I01-react-retry1\error-context.md
+
+  29) [vue] › tests\contract-crud.spec.ts:24:5 › AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01 ─────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-1-合同列表渲染-seed-行-M95-F02-I02-覆盖-M02-F01-I01-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-1-合同列表渲染-seed-行-M95-F02-I02-覆盖-M02-F01-I01-vue-retry1\error-context.md
+
+  30) [vue] › tests\contract-crud.spec.ts:52:5 › AC-2 创建合同：行出现 M95.F02.I02 覆盖 M02.F01.I02 ──────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-2-创建合同：行出现-M95-F02-I02-覆盖-M02-F01-I02-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-2-创建合同：行出现-M95-F02-I02-覆盖-M02-F01-I02-vue-retry1\error-context.md
+
+  31) [vue] › tests\contract-crud.spec.ts:57:5 › AC-3 编辑合同：项目名称变更落行 M95.F02.I02 覆盖 M02.F01.I02 ─────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-3-编辑合同：项目名称变更落行-M95-F02-I02-覆盖-M02-F01-I02-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-3-编辑合同：项目名称变更落行-M95-F02-I02-覆盖-M02-F01-I02-vue-retry1\error-context.md
+
+  32) [vue] › tests\contract-crud.spec.ts:74:5 › AC-4 删除合同：确认后行消失 M95.F02.I02 覆盖 M02.F01.I03 ───────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-4-删除合同：确认后行消失-M95-F02-I02-覆盖-M02-F01-I03-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 | });
+      23 |
+      24 | test("AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\contract-crud.spec.ts:21:48
+
+    Error Context: test-results\contract-crud-AC-4-删除合同：确认后行消失-M95-F02-I02-覆盖-M02-F01-I03-vue-retry1\error-context.md
+
+  33) [vue] › tests\dict-crud.spec.ts:25:5 › AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01 ────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      20 |   await loginAndSeed(page, request);
+      21 |   await page.goto("/brands");
+    > 22 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      23 | });
+      24 |
+      25 | test("AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\dict-crud.spec.ts:22:65
+
+    Error Context: test-results\dict-crud-AC-1-品牌字典：选类别后-seed-行渲染-M95-F02-I05-覆盖-M04-F09-I01-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      20 |   await loginAndSeed(page, request);
+      21 |   await page.goto("/brands");
+    > 22 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      23 | });
+      24 |
+      25 | test("AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\dict-crud.spec.ts:22:65
+
+    Error Context: test-results\dict-crud-AC-1-品牌字典：选类别后-seed-行渲染-M95-F02-I05-覆盖-M04-F09-I01-vue-retry1\error-context.md
+
+  34) [vue] › tests\dict-crud.spec.ts:29:5 › AC-2 新建品牌：行出现 M95.F02.I05 覆盖 M04.F09.I02 ──────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      20 |   await loginAndSeed(page, request);
+      21 |   await page.goto("/brands");
+    > 22 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      23 | });
+      24 |
+      25 | test("AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\dict-crud.spec.ts:22:65
+
+    Error Context: test-results\dict-crud-AC-2-新建品牌：行出现-M95-F02-I05-覆盖-M04-F09-I02-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      20 |   await loginAndSeed(page, request);
+      21 |   await page.goto("/brands");
+    > 22 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      23 | });
+      24 |
+      25 | test("AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\dict-crud.spec.ts:22:65
+
+    Error Context: test-results\dict-crud-AC-2-新建品牌：行出现-M95-F02-I05-覆盖-M04-F09-I02-vue-retry1\error-context.md
+
+  35) [vue] › tests\dict-crud.spec.ts:40:5 › AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I03 ───────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      20 |   await loginAndSeed(page, request);
+      21 |   await page.goto("/brands");
+    > 22 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      23 | });
+      24 |
+      25 | test("AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\dict-crud.spec.ts:22:65
+
+    Error Context: test-results\dict-crud-AC-3-删除品牌：确认后行消失-M95-F02-I05-覆盖-M04-F09-I03-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      20 |   await loginAndSeed(page, request);
+      21 |   await page.goto("/brands");
+    > 22 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      23 | });
+      24 |
+      25 | test("AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01", async ({ page }) => {
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\dict-crud.spec.ts:22:65
+
+    Error Context: test-results\dict-crud-AC-3-删除品牌：确认后行消失-M95-F02-I05-覆盖-M04-F09-I03-vue-retry1\error-context.md
+
+  36) [vue] › tests\receipt-crud.spec.ts:69:5 › AC-1 委托书列表渲染 seed 行 M95.F02.I04 覆盖 M03.F01.I01 ─────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-1-委托书列表渲染-seed-行-M95-F02-I04-覆盖-M03-F01-I01-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-1-委托书列表渲染-seed-行-M95-F02-I04-覆盖-M03-F01-I01-vue-retry1\error-context.md
+
+  37) [vue] › tests\receipt-crud.spec.ts:74:5 › AC-2 创建委托书：行出现 M95.F02.I04 覆盖 M03.F01.I02 ──────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-2-创建委托书：行出现-M95-F02-I04-覆盖-M03-F01-I02-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-2-创建委托书：行出现-M95-F02-I04-覆盖-M03-F01-I02-vue-retry1\error-context.md
+
+  38) [vue] › tests\receipt-crud.spec.ts:78:5 › AC-3 编辑委托书：委托书编号变更落行 M95.F02.I04 覆盖 M03.F01.I03 ────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-3-编辑委托书：委托书编号变更落行-M95-F02-I04-覆盖-M03-F01-I03-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-3-编辑委托书：委托书编号变更落行-M95-F02-I04-覆盖-M03-F01-I03-vue-retry1\error-context.md
+
+  39) [vue] › tests\receipt-crud.spec.ts:93:5 › AC-4 删除委托书：确认后行消失 M95.F02.I04 覆盖 M03.F01.I03 ───────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-4-删除委托书：确认后行消失-M95-F02-I04-覆盖-M03-F01-I03-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F01.I01"]').first()
+
+
+      31 |   await page.goto("/receipts");
+      32 |   // I01 承载分歧（已登记）：react/vue 行级、nextjs 容器级——锚存在即可见
+    > 33 |   await expect(page.locator('[data-fn="M03.F01.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      34 | });
+      35 |
+      36 | /** 创建一条委托书：公共必填「委托书编号」+ 各端存在才补的字段；
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\receipt-crud.spec.ts:33:65
+
+    Error Context: test-results\receipt-crud-AC-4-删除委托书：确认后行消失-M95-F02-I04-覆盖-M03-F01-I03-vue-retry1\error-context.md
+
+  40) [vue] › tests\session.spec.ts:8:5 › AC-1 会话预置后业务页可达：合同列表渲染 seed 行 M95.F02.I03 覆盖 M00.F01.I01 ─
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+       9 |   await loginAndSeed(page, request);
+      10 |   await page.goto("/contracts");
+    > 11 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      12 |   // 主列表非空（seed 合同 ≥1 行）——直击死桩类假绿
+      13 |   const rows = fnRow(page, "M02.F01.I01");
+      14 |   await expect(rows.first()).toBeVisible({ timeout: 15_000 });
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\session.spec.ts:11:48
+
+    Error Context: test-results\session-AC-1-会话预置后业务页可达：合同-c9f44--M95-F02-I03-覆盖-M00-F01-I01-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+       9 |   await loginAndSeed(page, request);
+      10 |   await page.goto("/contracts");
+    > 11 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      12 |   // 主列表非空（seed 合同 ≥1 行）——直击死桩类假绿
+      13 |   const rows = fnRow(page, "M02.F01.I01");
+      14 |   await expect(rows.first()).toBeVisible({ timeout: 15_000 });
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\session.spec.ts:11:48
+
+    Error Context: test-results\session-AC-1-会话预置后业务页可达：合同-c9f44--M95-F02-I03-覆盖-M00-F01-I01-vue-retry1\error-context.md
+
+  41) [vue] › tests\session.spec.ts:18:5 › AC-2 登出：会话清理落回登录页 M95.F02.I03 覆盖 M01.F05.I04 ────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 |
+      23 |   // 登出锚：react/nextjs data-testid=logout-button（data-fn 分别 I04/I05，已登记分歧）；
+      24 |   // vue 仅 data-fn=M01.F05.I04。superset 选择器，三端各命中恰好一个元素。
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\session.spec.ts:21:48
+
+    Error Context: test-results\session-AC-2-登出：会话清理落回登录页-M95-F02-I03-覆盖-M01-F05-I04-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('合同管理').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('合同管理').first() with timeout 15000ms
+      - waiting for getByText('合同管理').first()
+
+
+      19 |   await loginAndSeed(page, request);
+      20 |   await page.goto("/contracts");
+    > 21 |   await expect(page.getByText("合同管理").first()).toBeVisible({ timeout: 15_000 });
+         |                                                ^
+      22 |
+      23 |   // 登出锚：react/nextjs data-testid=logout-button（data-fn 分别 I04/I05，已登记分歧）；
+      24 |   // vue 仅 data-fn=M01.F05.I04。superset 选择器，三端各命中恰好一个元素。
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\session.spec.ts:21:48
+
+    Error Context: test-results\session-AC-2-登出：会话清理落回登录页-M95-F02-I03-覆盖-M01-F05-I04-vue-retry1\error-context.md
+
+  42) [vue] › tests\smoke-nav.spec.ts:44:5 › AC-2 关键列表页有数据行（防死桩假绿）M95.F02.I07 ──────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+
+
+      45 |   await loginAndSeed(page, request);
+      46 |   await page.goto("/contracts");
+    > 47 |   await expect(fnRow(page, "M02.F01.I01").first()).toBeVisible({ timeout: 15_000 });
+         |                                                    ^
+      48 |   await page.goto("/brands");
+      49 |   // superset 行锚（已登记分歧）：字典行 react=tr、vue/nextjs=li
+      50 |   await expect(
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\smoke-nav.spec.ts:47:52
+
+    Error Context: test-results\smoke-nav-AC-2-关键列表页有数据行（防死桩假绿）M95-F02-I07-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+
+
+      45 |   await loginAndSeed(page, request);
+      46 |   await page.goto("/contracts");
+    > 47 |   await expect(fnRow(page, "M02.F01.I01").first()).toBeVisible({ timeout: 15_000 });
+         |                                                    ^
+      48 |   await page.goto("/brands");
+      49 |   // superset 行锚（已登记分歧）：字典行 react=tr、vue/nextjs=li
+      50 |   await expect(
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\smoke-nav.spec.ts:47:52
+
+    Error Context: test-results\smoke-nav-AC-2-关键列表页有数据行（防死桩假绿）M95-F02-I07-vue-retry1\error-context.md
+
+  43) [vue] › tests\techreq-crud.spec.ts:93:5 › AC-1 技术要求列表渲染 seed 行 M95.F02.I06 覆盖 M06.F06.I01 ────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M06.F06.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M06.F06.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M06.F06.I01"]').first()
+
+
+      31 |   await loginAndSeed(page, request);
+      32 |   await page.goto("/inspection-technical-requirements");
+    > 33 |   await expect(page.locator(CONTAINER).first()).toBeVisible({ timeout: 15_000 });
+         |                                                 ^
+      34 | });
+      35 |
+      36 | /** nextjs 二级树需选检测项目→检测标准右列才出数据（react/vue 平铺表格无此步，
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:33:49
+
+    Error Context: test-results\techreq-crud-AC-1-技术要求列表渲染-seed-行-M95-F02-I06-覆盖-M06-F06-I01-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M06.F06.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M06.F06.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M06.F06.I01"]').first()
+
+
+      31 |   await loginAndSeed(page, request);
+      32 |   await page.goto("/inspection-technical-requirements");
+    > 33 |   await expect(page.locator(CONTAINER).first()).toBeVisible({ timeout: 15_000 });
+         |                                                 ^
+      34 | });
+      35 |
+      36 | /** nextjs 二级树需选检测项目→检测标准右列才出数据（react/vue 平铺表格无此步，
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:33:49
+
+    Error Context: test-results\techreq-crud-AC-1-技术要求列表渲染-seed-行-M95-F02-I06-覆盖-M06-F06-I01-vue-retry1\error-context.md
+
+  44) [vue] › tests\techreq-crud.spec.ts:97:5 › AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02 ───
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M06.F06.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M06.F06.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M06.F06.I01"]').first()
+
+
+      31 |   await loginAndSeed(page, request);
+      32 |   await page.goto("/inspection-technical-requirements");
+    > 33 |   await expect(page.locator(CONTAINER).first()).toBeVisible({ timeout: 15_000 });
+         |                                                 ^
+      34 | });
+      35 |
+      36 | /** nextjs 二级树需选检测项目→检测标准右列才出数据（react/vue 平铺表格无此步，
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:33:49
+
+    Error Context: test-results\techreq-crud-AC-2-新建技术要求：保-f1fc5--M95-F02-I06-覆盖-M06-F06-I02-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M06.F06.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M06.F06.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M06.F06.I01"]').first()
+
+
+      31 |   await loginAndSeed(page, request);
+      32 |   await page.goto("/inspection-technical-requirements");
+    > 33 |   await expect(page.locator(CONTAINER).first()).toBeVisible({ timeout: 15_000 });
+         |                                                 ^
+      34 | });
+      35 |
+      36 | /** nextjs 二级树需选检测项目→检测标准右列才出数据（react/vue 平铺表格无此步，
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:33:49
+
+    Error Context: test-results\techreq-crud-AC-2-新建技术要求：保-f1fc5--M95-F02-I06-覆盖-M06-F06-I02-vue-retry1\error-context.md
+
+  45) [vue] › tests\techreq-crud.spec.ts:107:5 › AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03 ────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M06.F06.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M06.F06.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M06.F06.I01"]').first()
+
+
+      31 |   await loginAndSeed(page, request);
+      32 |   await page.goto("/inspection-technical-requirements");
+    > 33 |   await expect(page.locator(CONTAINER).first()).toBeVisible({ timeout: 15_000 });
+         |                                                 ^
+      34 | });
+      35 |
+      36 | /** nextjs 二级树需选检测项目→检测标准右列才出数据（react/vue 平铺表格无此步，
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:33:49
+
+    Error Context: test-results\techreq-crud-AC-3-删除技术要求：确认后行数回落-M95-F02-I06-覆盖-M06-F06-I03-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M06.F06.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M06.F06.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M06.F06.I01"]').first()
+
+
+      31 |   await loginAndSeed(page, request);
+      32 |   await page.goto("/inspection-technical-requirements");
+    > 33 |   await expect(page.locator(CONTAINER).first()).toBeVisible({ timeout: 15_000 });
+         |                                                 ^
+      34 | });
+      35 |
+      36 | /** nextjs 二级树需选检测项目→检测标准右列才出数据（react/vue 平铺表格无此步，
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\techreq-crud.spec.ts:33:49
+
+    Error Context: test-results\techreq-crud-AC-3-删除技术要求：确认后行数回落-M95-F02-I06-覆盖-M06-F06-I03-vue-retry1\error-context.md
+
+  46) [vue] › tests\ui-parity.spec.ts:7:5 › AC-1 合同表头三端全等 M95.F02.I08 覆盖 M02.F01.I01 ───────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+
+
+       8 |   await loginAndSeed(page, request);
+       9 |   await page.goto("/contracts");
+    > 10 |   await expect(fnRow(page, "M02.F01.I01").first()).toBeVisible({ timeout: 15_000 });
+         |                                                    ^
+      11 |   // superset 表头：react/nextjs 真 thead th；vue shadcn 迁移后 div[role=columnheader]
+      12 |   const headers = await page.locator('thead th, [role="columnheader"]').allTextContents();
+      13 |   expect(headers.map((h) => h.trim())).toEqual([
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\ui-parity.spec.ts:10:52
+
+    Error Context: test-results\ui-parity-AC-1-合同表头三端全等-M95-F02-I08-覆盖-M02-F01-I01-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+
+
+       8 |   await loginAndSeed(page, request);
+       9 |   await page.goto("/contracts");
+    > 10 |   await expect(fnRow(page, "M02.F01.I01").first()).toBeVisible({ timeout: 15_000 });
+         |                                                    ^
+      11 |   // superset 表头：react/nextjs 真 thead th；vue shadcn 迁移后 div[role=columnheader]
+      12 |   const headers = await page.locator('thead th, [role="columnheader"]').allTextContents();
+      13 |   expect(headers.map((h) => h.trim())).toEqual([
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\ui-parity.spec.ts:10:52
+
+    Error Context: test-results\ui-parity-AC-1-合同表头三端全等-M95-F02-I08-覆盖-M02-F01-I01-vue-retry1\error-context.md
+
+  47) [vue] › tests\ui-parity.spec.ts:24:5 › AC-2 合同行操作含编辑/删除 M95.F02.I08 覆盖 M02.F01.I03 ───────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+
+
+      26 |   await page.goto("/contracts");
+      27 |   const row = fnRow(page, "M02.F01.I01").first();
+    > 28 |   await expect(row).toBeVisible({ timeout: 15_000 });
+         |                     ^
+      29 |   await expect(row.getByRole("button", { name: "编辑" })).toBeVisible();
+      30 |   // 删除锚分歧（已登记）：react/vue 行内 I03；nextjs 行内按钮无 data-fn（可观察
+      31 |   // 文本「删除」）。确认交互形态分歧另登记（react ConfirmModal / vue ConfirmDialog /
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\ui-parity.spec.ts:28:21
+
+    Error Context: test-results\ui-parity-AC-2-合同行操作含编辑-删除-M95-F02-I08-覆盖-M02-F01-I03-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first() with timeout 15000ms
+      - waiting for locator('tr[data-fn="M02.F01.I01"], [role="row"][data-fn="M02.F01.I01"]').first()
+
+
+      26 |   await page.goto("/contracts");
+      27 |   const row = fnRow(page, "M02.F01.I01").first();
+    > 28 |   await expect(row).toBeVisible({ timeout: 15_000 });
+         |                     ^
+      29 |   await expect(row.getByRole("button", { name: "编辑" })).toBeVisible();
+      30 |   // 删除锚分歧（已登记）：react/vue 行内 I03；nextjs 行内按钮无 data-fn（可观察
+      31 |   // 文本「删除」）。确认交互形态分歧另登记（react ConfirmModal / vue ConfirmDialog /
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\ui-parity.spec.ts:28:21
+
+    Error Context: test-results\ui-parity-AC-2-合同行操作含编辑-删除-M95-F02-I08-覆盖-M02-F01-I03-vue-retry1\error-context.md
+
+  48) [vue] › tests\ui-parity.spec.ts:36:5 › AC-3 品牌字典与技术要求容器锚三端同构 M95.F02.I08 覆盖 M04.F09.I01 + M06.F06.I01 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      37 |   await loginAndSeed(page, request);
+      38 |   await page.goto("/brands");
+    > 39 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      40 |   await page.goto("/inspection-technical-requirements");
+      41 |   await expect(page.locator('[data-fn="M06.F06.I01"]').first()).toBeVisible({ timeout: 15_000 });
+      42 | });
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\ui-parity.spec.ts:39:65
+
+    Error Context: test-results\ui-parity-AC-3-品牌字典与技术要求容器-af5a1--覆盖-M04-F09-I01-M06-F06-I01-vue\error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M04.F09.I01"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M04.F09.I01"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M04.F09.I01"]').first()
+
+
+      37 |   await loginAndSeed(page, request);
+      38 |   await page.goto("/brands");
+    > 39 |   await expect(page.locator('[data-fn="M04.F09.I01"]').first()).toBeVisible({ timeout: 15_000 });
+         |                                                                 ^
+      40 |   await page.goto("/inspection-technical-requirements");
+      41 |   await expect(page.locator('[data-fn="M06.F06.I01"]').first()).toBeVisible({ timeout: 15_000 });
+      42 | });
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\ui-parity.spec.ts:39:65
+
+    Error Context: test-results\ui-parity-AC-3-品牌字典与技术要求容器-af5a1--覆盖-M04-F09-I01-M06-F06-I01-vue-retry1\error-context.md
+
+  49) [vue] › tests\data-entry.spec.ts:176:5 › AC-1 数据录入列表渲染 data_entry 种子行 M95.F02.I09 覆盖 M03.F03.I01/I06 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-fn="M03.F03.I03"]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-fn="M03.F03.I03"]').first() with timeout 15000ms
+      - waiting for locator('[data-fn="M03.F03.I03"]').first()
+
+
+      83 |   await page.goto("/data-entry");
+      84 |   // 列表 = 后端 flowStatus=data_entry 过滤（种子 33 行）；行锚三端同
+    > 85 |   await expect(rowAction(page).first()).toBeVisible({ timeout: 15_000 });
+         |                                         ^
+      86 | });
+      87 |
+      88 | /** 打开第一行「录入结果」弹窗，等样品/参数就位（样品下拉非空或 nextjs 样品卡出现）。 */
+        at D:\qiand-life\1-projects\xr-code-suite\output\lab-management-system-e2e\tests\data-entry.spec.ts:85:41
+
+    Error Context: test-results\data-entry-AC-1-数据录入列表渲染-d-6617e--F02-I09-覆盖-M03-F03-I01-I06-vue\error-context.md
+
+  48 failed
+    [nextjs] › tests\contract-crud.spec.ts:52:5 › AC-2 创建合同：行出现 M95.F02.I02 覆盖 M02.F01.I02 ─────────
+    [nextjs] › tests\contract-crud.spec.ts:57:5 › AC-3 编辑合同：项目名称变更落行 M95.F02.I02 覆盖 M02.F01.I02 ────
+    [nextjs] › tests\contract-crud.spec.ts:74:5 › AC-4 删除合同：确认后行消失 M95.F02.I02 覆盖 M02.F01.I03 ──────
+    [nextjs] › tests\dict-crud.spec.ts:40:5 › AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I03 ──────────
+    [nextjs] › tests\login.spec.ts:44:5 › AC-2 回跳 state 校验失败：不发 callback、停留 /login 显示错误 M95.F02.I01 覆盖 M01.F05.I01 
+    [nextjs] › tests\techreq-crud.spec.ts:97:5 › AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02 ──
+    [nextjs] › tests\techreq-crud.spec.ts:107:5 › AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03 ───
+    [react] › tests\contract-crud.spec.ts:24:5 › AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01 ─────
+    [react] › tests\contract-crud.spec.ts:52:5 › AC-2 创建合同：行出现 M95.F02.I02 覆盖 M02.F01.I02 ──────────
+    [react] › tests\contract-crud.spec.ts:57:5 › AC-3 编辑合同：项目名称变更落行 M95.F02.I02 覆盖 M02.F01.I02 ─────
+    [react] › tests\contract-crud.spec.ts:74:5 › AC-4 删除合同：确认后行消失 M95.F02.I02 覆盖 M02.F01.I03 ───────
+    [react] › tests\dict-crud.spec.ts:25:5 › AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01 ────
+    [react] › tests\dict-crud.spec.ts:29:5 › AC-2 新建品牌：行出现 M95.F02.I05 覆盖 M04.F09.I02 ──────────────
+    [react] › tests\dict-crud.spec.ts:40:5 › AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I03 ───────────
+    [react] › tests\receipt-crud.spec.ts:69:5 › AC-1 委托书列表渲染 seed 行 M95.F02.I04 覆盖 M03.F01.I01 ─────
+    [react] › tests\receipt-crud.spec.ts:74:5 › AC-2 创建委托书：行出现 M95.F02.I04 覆盖 M03.F01.I02 ──────────
+    [react] › tests\receipt-crud.spec.ts:78:5 › AC-3 编辑委托书：委托书编号变更落行 M95.F02.I04 覆盖 M03.F01.I03 ────
+    [react] › tests\receipt-crud.spec.ts:93:5 › AC-4 删除委托书：确认后行消失 M95.F02.I04 覆盖 M03.F01.I03 ───────
+    [react] › tests\session.spec.ts:8:5 › AC-1 会话预置后业务页可达：合同列表渲染 seed 行 M95.F02.I03 覆盖 M00.F01.I01 ─
+    [react] › tests\session.spec.ts:18:5 › AC-2 登出：会话清理落回登录页 M95.F02.I03 覆盖 M01.F05.I04 ────────────
+    [react] › tests\smoke-nav.spec.ts:32:5 › AC-1 全部公共路由可达：无崩溃、无 API 5xx M95.F02.I07 ───────────────
+    [react] › tests\smoke-nav.spec.ts:44:5 › AC-2 关键列表页有数据行（防死桩假绿）M95.F02.I07 ──────────────────────
+    [react] › tests\techreq-crud.spec.ts:93:5 › AC-1 技术要求列表渲染 seed 行 M95.F02.I06 覆盖 M06.F06.I01 ────
+    [react] › tests\techreq-crud.spec.ts:97:5 › AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02 ───
+    [react] › tests\techreq-crud.spec.ts:107:5 › AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03 ────
+    [react] › tests\ui-parity.spec.ts:7:5 › AC-1 合同表头三端全等 M95.F02.I08 覆盖 M02.F01.I01 ───────────────
+    [react] › tests\ui-parity.spec.ts:24:5 › AC-2 合同行操作含编辑/删除 M95.F02.I08 覆盖 M02.F01.I03 ───────────
+    [react] › tests\ui-parity.spec.ts:36:5 › AC-3 品牌字典与技术要求容器锚三端同构 M95.F02.I08 覆盖 M04.F09.I01 + M06.F06.I01 
+    [vue] › tests\contract-crud.spec.ts:24:5 › AC-1 合同列表渲染 seed 行 M95.F02.I02 覆盖 M02.F01.I01 ───────
+    [vue] › tests\contract-crud.spec.ts:52:5 › AC-2 创建合同：行出现 M95.F02.I02 覆盖 M02.F01.I02 ────────────
+    [vue] › tests\contract-crud.spec.ts:57:5 › AC-3 编辑合同：项目名称变更落行 M95.F02.I02 覆盖 M02.F01.I02 ───────
+    [vue] › tests\contract-crud.spec.ts:74:5 › AC-4 删除合同：确认后行消失 M95.F02.I02 覆盖 M02.F01.I03 ─────────
+    [vue] › tests\dict-crud.spec.ts:25:5 › AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01 ──────
+    [vue] › tests\dict-crud.spec.ts:29:5 › AC-2 新建品牌：行出现 M95.F02.I05 覆盖 M04.F09.I02 ────────────────
+    [vue] › tests\dict-crud.spec.ts:40:5 › AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I03 ─────────────
+    [vue] › tests\receipt-crud.spec.ts:69:5 › AC-1 委托书列表渲染 seed 行 M95.F02.I04 覆盖 M03.F01.I01 ───────
+    [vue] › tests\receipt-crud.spec.ts:74:5 › AC-2 创建委托书：行出现 M95.F02.I04 覆盖 M03.F01.I02 ────────────
+    [vue] › tests\receipt-crud.spec.ts:78:5 › AC-3 编辑委托书：委托书编号变更落行 M95.F02.I04 覆盖 M03.F01.I03 ──────
+    [vue] › tests\receipt-crud.spec.ts:93:5 › AC-4 删除委托书：确认后行消失 M95.F02.I04 覆盖 M03.F01.I03 ─────────
+    [vue] › tests\session.spec.ts:8:5 › AC-1 会话预置后业务页可达：合同列表渲染 seed 行 M95.F02.I03 覆盖 M00.F01.I01 ───
+    [vue] › tests\session.spec.ts:18:5 › AC-2 登出：会话清理落回登录页 M95.F02.I03 覆盖 M01.F05.I04 ──────────────
+    [vue] › tests\smoke-nav.spec.ts:44:5 › AC-2 关键列表页有数据行（防死桩假绿）M95.F02.I07 ────────────────────────
+    [vue] › tests\techreq-crud.spec.ts:93:5 › AC-1 技术要求列表渲染 seed 行 M95.F02.I06 覆盖 M06.F06.I01 ──────
+    [vue] › tests\techreq-crud.spec.ts:97:5 › AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02 ─────
+    [vue] › tests\techreq-crud.spec.ts:107:5 › AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03 ──────
+    [vue] › tests\ui-parity.spec.ts:7:5 › AC-1 合同表头三端全等 M95.F02.I08 覆盖 M02.F01.I01 ─────────────────
+    [vue] › tests\ui-parity.spec.ts:24:5 › AC-2 合同行操作含编辑/删除 M95.F02.I08 覆盖 M02.F01.I03 ─────────────
+    [vue] › tests\ui-parity.spec.ts:36:5 › AC-3 品牌字典与技术要求容器锚三端同构 M95.F02.I08 覆盖 M04.F09.I01 + M06.F06.I01 
+  1 flaky
+    [vue] › tests\data-entry.spec.ts:176:5 › AC-1 数据录入列表渲染 data_entry 种子行 M95.F02.I09 覆盖 M03.F03.I01/I06 
+  53 passed (31.7m)
