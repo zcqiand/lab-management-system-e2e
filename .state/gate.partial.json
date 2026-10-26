@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "project": "lab-management-system-e2e",
+  "tier": "full",
+  "excluded_tier": [],
+  "passed": true,
+  "partial": true,
+  "ran": [
+    "L0"
+  ],
+  "checked_at": "2026-10-26T18:06:14+0800",
+  "gates": [
+    {
+      "level": "L0",
+      "name": "结构完整性",
+      "passed": true,
+      "returncode": 0,
+      "duration_s": 0.11,
+      "output": ""
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "version_lock": {
+    "@playwright/test": "^1.63.0",
+    "typescript": "^7.0.2",
+    "@types/node": "^22.20.2"
+  },
+  "_note": "e2e parity suite 依赖全集，package.json 钉版，不引入此外的库"
+}
