@@ -9,6 +9,7 @@
       "cmd": [
         "npx",
         "--no",
+        "--",
         "tsc",
         "--noEmit"
       ],
@@ -19,6 +20,7 @@
       "cmd": [
         "npx",
         "--no",
+        "--",
         "playwright",
         "test"
       ],
@@ -28,6 +30,7 @@
   "trace_cmd": [
     "npx",
     "--no",
+    "--",
     "playwright",
     "test"
   ],
