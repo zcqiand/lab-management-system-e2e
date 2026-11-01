@@ -47,6 +47,44 @@ export function reseed(): void {
   }
 }
 
+/** 清掉上一轮 e2e 自产残留行（e2e-ct-* / e2e-rc-* / e2e-probe-*）。
+ *  种子还原是 upsert 不会删自产行：残留会把列表撑过前端首屏窗口
+ *  （nextjs receipts PAGE_SIZE=10 / contracts 路由 slice pageSize=20），
+ *  新建行落窗口外 → CRUD AC 确定性假红（2026-11-02 round 4 实证：
+ *  receipts 251 行 / contracts 54 行，AC-4 双 retry 挂）。
+ *  先删 receipts（FK RESTRICT 指向 contracts）再删 contracts。 */
+export function purgeE2eRows(): void {
+  const r = spawnSync(
+    process.execPath,
+    [
+      "-e",
+      `
+const { Pool } = require("pg");
+const pool = new Pool({ connectionString: process.env.E2E_DATABASE_URL });
+(async () => {
+  const r = await pool.query("delete from sample_receipts where commission_code like 'e2e-rc-%'");
+  const c = await pool.query("delete from contracts where contract_code like 'e2e-ct-%' or contract_code like 'e2e-probe-%'");
+  console.log("[e2e globalSetup] purged e2e rows: receipts=" + r.rowCount + " contracts=" + c.rowCount);
+  await pool.end();
+})().catch((e) => { console.error("[e2e globalSetup] purge failed: " + e.message); process.exit(1); });
+`,
+    ],
+    {
+      // cwd=shared：e2e 仓无 pg 依赖（playwright 仓不直连 DB），pg 由 shared
+      // seed-db.mjs 的同款依赖提供——模块解析跟随 cwd（2026-11-02 gate 实证：
+      // 缺 cwd 时 MODULE_NOT_FOUND 静默失败，purge 根本没跑）。
+      cwd: SHARED,
+      stdio: "inherit",
+      env: { ...process.env, E2E_DATABASE_URL: requireE2eEnv("E2E_DATABASE_URL") },
+    },
+  );
+  if (r.status !== 0) {
+    throw new Error(
+      `[e2e globalSetup] purge 失败（exit ${r.status}）。检查 E2E_DATABASE_URL 与库可达性。`,
+    );
+  }
+}
+
 /** 带 AbortController 超时的 fetch，任何异常（含超时）都吞掉返回 null——暖机尽力而为。 */
 async function warmOnce(url: string): Promise<number | null> {
   const ac = new AbortController();
@@ -120,6 +158,7 @@ async function warmupNextjs(): Promise<void> {
 export default async function globalSetup(): Promise<void> {
   // fail-fast：种库前先验 env 在位（seed-db.mjs 自己也 fail-fast）
   requireE2eEnv("E2E_DATABASE_URL");
+  purgeE2eRows();
   reseed();
   await warmupNextjs();
 }

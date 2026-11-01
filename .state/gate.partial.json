@@ -6,16 +6,16 @@
   "passed": true,
   "partial": true,
   "ran": [
-    "L0"
+    "L3"
   ],
-  "checked_at": "2026-10-26T18:06:14+0800",
+  "checked_at": "2026-11-02T03:23:30+0800",
   "gates": [
     {
-      "level": "L0",
-      "name": "结构完整性",
+      "level": "L3",
+      "name": "类型",
       "passed": true,
       "returncode": 0,
-      "duration_s": 0.11,
+      "duration_s": 3.578,
       "output": ""
     }
   ]

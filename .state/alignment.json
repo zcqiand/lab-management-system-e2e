@@ -4,14 +4,27 @@
   "functions": {
     "modules": 2,
     "features": 5,
-    "items": 13
+    "items": 17
   },
-  "warnings_total": 3,
+  "warnings_total": 12,
   "warnings": {
+    "已上线但无设计映射": [
+      "M95.F02.I09",
+      "M95.F02.I10",
+      "M95.F02.I11",
+      "M95.F04.I02"
+    ],
+    "已上线但无测试引用": [
+      "M95.F04.I02"
+    ],
     "已上线但不在任何流程且非孤儿白名单": [
       "M95.F02.I04",
       "M95.F02.I05",
-      "M95.F02.I06"
+      "M95.F02.I06",
+      "M95.F02.I09",
+      "M95.F02.I10",
+      "M95.F02.I11",
+      "M95.F04.I02"
     ]
   },
   "unreachable_shipped": [],
@@ -149,7 +162,7 @@
       "tests": [
         "tests/dict-crud.spec.ts::AC-1 品牌字典：选类别后 seed 行渲染 M95.F02.I05 覆盖 M04.F09.I01",
         "tests/dict-crud.spec.ts::AC-2 新建品牌：行出现 M95.F02.I05 覆盖 M04.F09.I02",
-        "tests/dict-crud.spec.ts::AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I03"
+        "tests/dict-crud.spec.ts::AC-3 删除品牌：确认后行消失 M95.F02.I05 覆盖 M04.F09.I04"
       ],
       "entry": []
     },
@@ -166,8 +179,8 @@
       ],
       "tests": [
         "tests/techreq-crud.spec.ts::AC-1 技术要求列表渲染 seed 行 M95.F02.I06 覆盖 M06.F06.I01",
-        "tests/techreq-crud.spec.ts::AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02",
-        "tests/techreq-crud.spec.ts::AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03"
+        "tests/techreq-crud.spec.ts::AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I03",
+        "tests/techreq-crud.spec.ts::AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I05"
       ],
       "entry": []
     },
@@ -202,6 +215,53 @@
       ],
       "entry": []
     },
+    "M95.F02.I09": {
+      "name": "数据录入用例",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [],
+      "flows": [],
+      "designs": [],
+      "tests": [
+        "tests/data-entry.spec.ts::AC-1 数据录入列表渲染 data_entry 种子行 M95.F02.I09 覆盖 M03.F03.I01/I06",
+        "tests/data-entry.spec.ts::AC-2 录入弹窗打开：样品与检测参数就位 M95.F02.I09 覆盖 M03.F03.I01",
+        "tests/data-entry.spec.ts::AC-3 保存检测结果：唯一值持久（重开回读） M95.F02.I09 覆盖 M03.F03.I08",
+        "tests/data-entry.spec.ts::AC-4 再次保存：结果更新落定 M95.F02.I09 覆盖 M03.F03.I09"
+      ],
+      "entry": []
+    },
+    "M95.F02.I10": {
+      "name": "报告工作流用例",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [],
+      "flows": [],
+      "designs": [],
+      "tests": [
+        "tests/report-workflow.spec.ts::AC-F05 /report-review act 提交后行离开阶段列表 M95.F02.I10 覆盖 M03.F05.I07",
+        "tests/report-workflow.spec.ts::AC-F05 /report-review 列表渲染种子态行 M95.F02.I10 覆盖 M03.F05.I01",
+        "tests/report-workflow.spec.ts::AC-F06 /report-approve act 提交后行离开阶段列表 M95.F02.I10 覆盖 M03.F06.I05",
+        "tests/report-workflow.spec.ts::AC-F06 /report-approve 列表渲染种子态行 M95.F02.I10 覆盖 M03.F06.I01",
+        "tests/report-workflow.spec.ts::AC-F07 /report-issue act 提交后行离开阶段列表 M95.F02.I10 覆盖 M03.F07.I05",
+        "tests/report-workflow.spec.ts::AC-F07 /report-issue 列表渲染种子态行 M95.F02.I10 覆盖 M03.F07.I01",
+        "tests/report-workflow.spec.ts::AC-F08 /report-archive act 提交落定（终态自转移：行留存于归档列表） M95.F02.I10 覆盖 M03.F08.I05",
+        "tests/report-workflow.spec.ts::AC-F08 /report-archive 列表渲染种子态行 M95.F02.I10 覆盖 M03.F08.I01"
+      ],
+      "entry": []
+    },
+    "M95.F02.I11": {
+      "name": "Summary 用例",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [],
+      "flows": [],
+      "designs": [],
+      "tests": [
+        "tests/summary.spec.ts::AC-1 /summary 汇总表结构与种子行在位 M95.F02.I11 覆盖 M05.F01.I01",
+        "tests/summary.spec.ts::AC-2 统计面在位：卡/漏斗 superset M95.F02.I11 覆盖 M05.F01.I02"
+      ],
+      "entry": []
+    },
     "M95.F03.I01": {
       "name": "Playwright→trace.json 映射器",
       "status": "已上线",
@@ -219,7 +279,7 @@
       "entry": []
     },
     "M95.F04.I01": {
-      "name": "lab-msw 默认目标接线",
+      "name": "真后端默认目标接线",
       "status": "已上线",
       "type": "接口",
       "requirements": [
@@ -232,6 +292,16 @@
       "tests": [
         "tests/infra-contract.spec.ts::AC-3 运行时约定登记了后端目标与 lab 端口段 M95.F01.I02 覆盖 M95.F04.I01"
       ],
+      "entry": []
+    },
+    "M95.F04.I02": {
+      "name": "live 冒烟接线",
+      "status": "已上线",
+      "type": "接口",
+      "requirements": [],
+      "flows": [],
+      "designs": [],
+      "tests": [],
       "entry": []
     }
   }

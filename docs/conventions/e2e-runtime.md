@@ -17,11 +17,13 @@ mock-friendly 语义（不起服时门禁照常可跑，E2E 用例仅在显式�
 
 | 序 | 仓 | 端口 | 命令（仓根） | 前置 |
 |---|---|---|---|---|
-| 1 | lab-management-system-nextjs | 5201 | `npm run dev` | PG 库在位（migrate + seed，见 §3.5） |
-| 2 | lab-management-system-react | 5202 | `npm run dev` | nextjs 在跑 |
-| 3 | lab-management-system-vue | 5203 | `npm run dev` | nextjs 在跑 |
+| 1 | saas-identity-platform-nextjs | 5101 | `npm run dev` | saas_dev 库在位（migrate + `node scripts/seed-db.mjs`）——**lab 登录的 IdP** |
+| 2 | lab-management-system-nextjs | 5201 | `npm run dev` | PG 库在位（migrate + seed，见 §3.5）；依赖 5101 |
+| 3 | lab-management-system-react | 5202 | `npm run dev` | nextjs 在跑 |
+| 4 | lab-management-system-vue | 5203 | `npm run dev` | nextjs 在跑 |
 
 健康检查：nextjs `GET :5201/api/health` 返回 200。API base = `http://localhost:5201/api`（e2e env `E2E_API_BASE_URL`）。
+**saas 5101 是隐藏依赖**：lab-nextjs `/api/auth/login` 代理到 saas IdP（`SAAS_IDP_URL`），5101 没起/5xx/超时 → 全部用例挂死在 loginAndSeed（502 SAAS_UNAVAILABLE）。saas_dev 库被清空时表现为 401 INVALID_CREDENTIALS（不是 502/429）——恢复：`cd saas-identity-platform-nextjs && node scripts/seed-db.mjs`（幂等；alice/dev123456 等 5 用户 3 租户）。2026-11-02 实证：杀 saas 栈前先确认 lab e2e 不在跑。
 
 2026-09-17 msw 仓已删（剔除设计 Phase 4 提前）：API 后端从 msw :5200 切到真
 lab-nextjs :5201（同款 `/api/auth/login` 形状）。lab-nextjs 是 DB 参照实现，
@@ -40,10 +42,16 @@ CI 已内置这三个覆盖（ci.yml envs）。本机手动起服时同样带上
 
 ## 3.5 数据生命周期（ADR-0033 阶段三；2026-09-17 切真后端后语义更新）
 
-真后端 DB 持久化——跨运行累积会撑爆分页首屏（flaky 实伤过 saas AC-4）。
-本仓 `globalSetup` 在每轮跑测前跑 shared `scripts/seed-db.mjs` **upsert 重灌**
-（`E2E_DATABASE_URL` 指向被测 lab-nextjs 实际连的库），把写路径用例翻转过的
-种子行还原；自产行靠唯一 code（`uniqueCode`），不依赖删除式清理。
+真后端 DB 持久化——跨运行累积会撑爆分页首屏（flaky 实伤过 saas AC-4；2026-11-02
+lab 侧再实证：receipts 攒到 251 行 / contracts 54 行，新建行被挤出首屏窗口
+——receipts 前端 PAGE_SIZE=10、contracts 路由 slice pageSize=20——CRUD AC-4
+双 retry 确定性假红）。本仓 `globalSetup` 每轮跑测前两步：
+`purgeE2eRows()` 删上一轮自产残留（`e2e-rc-*` / `e2e-ct-*` / `e2e-probe-*`；
+先删 receipts 再 contracts——FK RESTRICT 顺序反了会 23503），再跑 shared
+`scripts/seed-db.mjs` **upsert 重灌**（`E2E_DATABASE_URL` 指向被测 lab-nextjs
+实际连的库），把写路径用例翻转过的种子行还原。
+「自产行靠唯一 code 不依赖删除清理」的旧策略已废——唯一 code 只防断言串扰，
+防不了窗口挤出。
 `globalTeardown` 同款再灌一次，防失败泄漏残留污染开发者手动浏览。
 CI 用一次性 `lab_e2e` scratch 库（见 ci.yml postgres service），
 本机默认打 lab_dev——介意污染可给 lab-nextjs 换 scratch 库再跑。

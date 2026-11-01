@@ -14,6 +14,12 @@ import {
   formDialog,
 } from "./helpers";
 
+// AC 用例要完整开关弹窗两三轮（dev 编译下首个请求可达数秒，重载/冷路由更甚）——
+// 全局 30s 预算在序列尾部必爆（2026-11-02 react techreq AC-3 Test timeout 实证：
+// revealRows+createRow+两段 15s 断言 >30s）。data-entry.spec 同款先例，spec 局部
+// 放宽，不动全局。
+test.setTimeout(90_000);
+
 test.beforeEach(async ({ page, request }) => {
   await armNativeDialogAccept(page); // nextjs 原生 confirm（已登记分歧）
   await loginAndSeed(page, request);

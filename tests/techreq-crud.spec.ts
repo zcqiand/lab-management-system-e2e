@@ -1,4 +1,5 @@
 // M95.F02.I06 技术要求 CRUD（覆盖 BASE M06.F06，/inspection-technical-requirements）。
+// 锚对齐功能树（2026-11-02）：I01=列表、I02=详情 GET、I03=创建、I04=更新、I05=删除。
 // 已登记分歧（三种同源实现）：
 //   - react/vue：平铺 <Table>（tbody tr），radix Select 表单（含「未选择」哨兵）；
 //   - nextjs：TwoLevelObjectStandardTree 二级树（检测项目→检测标准，aside 按钮）+
@@ -17,6 +18,12 @@ import {
   fillByLabelIfPresent,
   installRefShapeAdapters,
 } from "./helpers";
+
+// AC 用例要完整开关弹窗两三轮（dev 编译下首个请求可达数秒，重载/冷路由更甚）——
+// 全局 30s 预算在序列尾部必爆（2026-11-02 react techreq AC-3 Test timeout 实证：
+// revealRows+createRow+两段 15s 断言 >30s）。data-entry.spec 同款先例，spec 局部
+// 放宽，不动全局。
+test.setTimeout(90_000);
 
 const CONTAINER = '[data-fn="M06.F06.I01"]';
 /** superset 行：react 表格行 vs vue div[role=row]（shadcn 迁移后无 tr 元素，
@@ -56,7 +63,7 @@ async function revealRows(page: Page): Promise<void> {
 
 /** 打开新建弹窗并创建一条 brand 唯一的技术要求，返回该 brand（行定位用）。 */
 async function createRow(page: Page, brand: string): Promise<void> {
-  await page.locator('[data-fn="M06.F06.I02"]').first().click();
+  await page.locator('[data-fn="M06.F06.I03"]').first().click();
   const dialog = formDialog(page);
   await expect(dialog.first()).toBeVisible();
   // 复合主键两维（radix：react/vue；原生 select：nextjs）
@@ -94,7 +101,7 @@ test("AC-1 技术要求列表渲染 seed 行 M95.F02.I06 覆盖 M06.F06.I01", as
   await revealRows(page);
 });
 
-test("AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I02", async ({ page }) => {
+test("AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M06.F06.I03", async ({ page }) => {
   await revealRows(page);
   const brand = uniqueCode("e2e-br");
   await createRow(page, brand);
@@ -104,14 +111,14 @@ test("AC-2 新建技术要求：保存成功、行数增长 M95.F02.I06 覆盖 M
   });
 });
 
-test("AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I03", async ({ page }) => {
+test("AC-3 删除技术要求：确认后行数回落 M95.F02.I06 覆盖 M06.F06.I05", async ({ page }) => {
   await revealRows(page);
   const brand = uniqueCode("e2e-br");
   await createRow(page, brand);
   const mine = page.locator(ROWS).filter({ hasText: brand }).first();
   await expect(mine).toBeVisible({ timeout: 15_000 });
-  // 删掉刚建的那条（brand 全局唯一）：行内 I03，确认（原生 confirm 已预挂 accept）
-  await mine.locator('[data-fn="M06.F06.I03"]').click();
+  // 删掉刚建的那条（brand 全局唯一）：行内 I05，确认（原生 confirm 已预挂 accept）
+  await mine.locator('[data-fn="M06.F06.I05"]').click();
   await confirmDeletion(page);
   await expect(page.locator(ROWS).filter({ hasText: brand })).toHaveCount(0, {
     timeout: 15_000,
