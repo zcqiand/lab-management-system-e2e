@@ -52,35 +52,26 @@ export function reseed(): void {
  *  （nextjs receipts PAGE_SIZE=10 / contracts 路由 slice pageSize=20），
  *  新建行落窗口外 → CRUD AC 确定性假红（2026-11-02 round 4 实证：
  *  receipts 251 行 / contracts 54 行，AC-4 双 retry 挂）。
- *  先删 receipts（FK RESTRICT 指向 contracts）再删 contracts。 */
+ *  2026-11-02 清场义务机器化批：改走 HTTP 黑盒（scripts/purge-e2e-rows.mjs，
+ *  ADR-0018 / contract-test cleanup-pg.ts 同款裁定）——直连 PG 版用
+ *  E2E_DATABASE_URL 指库，但 :5201 实际连的库由起它的那方决定（gate 注入
+ *  lab_test / 手动 lab_dev），env 不同源时清错库，残留打爆下游种子断言
+ *  （同日实证 lab_test 10 行 e2e-ct-* → lab-react/lab-django total 断言连爆）。
+ *  走 :5201 API = 服务连哪个库就清哪个库，同源由架构保证。 */
 export function purgeE2eRows(): void {
-  const r = spawnSync(
-    process.execPath,
-    [
-      "-e",
-      `
-const { Pool } = require("pg");
-const pool = new Pool({ connectionString: process.env.E2E_DATABASE_URL });
-(async () => {
-  const r = await pool.query("delete from sample_receipts where commission_code like 'e2e-rc-%'");
-  const c = await pool.query("delete from contracts where contract_code like 'e2e-ct-%' or contract_code like 'e2e-probe-%'");
-  console.log("[e2e globalSetup] purged e2e rows: receipts=" + r.rowCount + " contracts=" + c.rowCount);
-  await pool.end();
-})().catch((e) => { console.error("[e2e globalSetup] purge failed: " + e.message); process.exit(1); });
-`,
-    ],
-    {
-      // cwd=shared：e2e 仓无 pg 依赖（playwright 仓不直连 DB），pg 由 shared
-      // seed-db.mjs 的同款依赖提供——模块解析跟随 cwd（2026-11-02 gate 实证：
-      // 缺 cwd 时 MODULE_NOT_FOUND 静默失败，purge 根本没跑）。
-      cwd: SHARED,
-      stdio: "inherit",
-      env: { ...process.env, E2E_DATABASE_URL: requireE2eEnv("E2E_DATABASE_URL") },
+  const r = spawnSync(process.execPath, [resolve(__dirname, "../scripts/purge-e2e-rows.mjs")], {
+    stdio: "inherit",
+    env: {
+      ...process.env,
+      E2E_API_BASE_URL: requireE2eEnv("E2E_API_BASE_URL"),
+      E2E_TEST_USERNAME: requireE2eEnv("E2E_TEST_USERNAME"),
+      E2E_TEST_PASSWORD: requireE2eEnv("E2E_TEST_PASSWORD"),
     },
-  );
+  });
   if (r.status !== 0) {
     throw new Error(
-      `[e2e globalSetup] purge 失败（exit ${r.status}）。检查 E2E_DATABASE_URL 与库可达性。`,
+      `[e2e globalSetup] purge 失败（exit ${r.status}）。检查 E2E_API_BASE_URL ` +
+        `与被测 :5201 健康（登录凭据见 E2E_TEST_USERNAME/PASSWORD）。`,
     );
   }
 }

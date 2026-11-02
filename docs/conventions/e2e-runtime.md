@@ -52,6 +52,13 @@ lab 侧再实证：receipts 攒到 251 行 / contracts 54 行，新建行被挤�
 实际连的库），把写路径用例翻转过的种子行还原。
 「自产行靠唯一 code 不依赖删除清理」的旧策略已废——唯一 code 只防断言串扰，
 防不了窗口挤出。
+**purge 走 HTTP 黑盒**（`scripts/purge-e2e-rows.mjs`，2026-11-02 清场义务机器化批：
+ADR-0018 / contract-test cleanup-pg.ts 同款裁定）——前身直连 PG 版用
+`E2E_DATABASE_URL` 指库，但 :5201 实际连的库由起它的那方决定（gate L4 注入
+lab_test / 手动起服 lab_dev），env 不同源时清错库，残留打爆下游仓种子级断言
+（2026-11-02 实证：lab_test 10 行 e2e-ct-* → lab-react/lab-django total 断言连爆）。
+走 :5201 API = 服务连哪个库就清哪个库，同源由架构保证。脚本可独立运行（env
+fail-fast：E2E_API_BASE_URL / E2E_TEST_USERNAME / E2E_TEST_PASSWORD）。
 `globalTeardown` 同款再灌一次，防失败泄漏残留污染开发者手动浏览。
 CI 用一次性 `lab_e2e` scratch 库（见 ci.yml postgres service），
 本机默认打 lab_dev——介意污染可给 lab-nextjs 换 scratch 库再跑。
