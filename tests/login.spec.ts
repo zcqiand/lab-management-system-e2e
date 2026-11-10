@@ -1,7 +1,7 @@
 // M95.F02.I01 登录主流程（lab 版：SSO orchestrator，非密码表单）。
 // lab 三前端 /login 是 OAuth 2.0 授权码 orchestrator（RFC 6749，镜像 nextjs 模型）：
 //   阶段 2：无回调参数 → GET /auth/sso/authorize（response_type/client_id/redirect_uri/state）
-//           → window.location 跳 saas 身份平台
+//           → window.location 跳 SaaS 多租户多应用身份平台
 //   阶段 1：?code=&state= 回跳 → 验 state（防 CSRF）→ POST /auth/sso/callback 换 lab JWT
 // saas 侧 IdP 的行为已由 saas-e2e 全链覆盖；本 spec 只测 lab 浏览器侧职责，
 // saas 跳转目标与 callback 响应用 page.route 虚拟化（无需 saas 家族在场）。
